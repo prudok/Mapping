@@ -20,6 +20,7 @@ mixin _$LoginState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(User user) loading,
+    required TResult Function(LoginFailure loginFailure) loadFailed,
     required TResult Function() loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$LoginState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(User user)? loading,
+    TResult? Function(LoginFailure loginFailure)? loadFailed,
     TResult? Function()? loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$LoginState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(User user)? loading,
+    TResult Function(LoginFailure loginFailure)? loadFailed,
     TResult Function()? loaded,
     required TResult orElse(),
   }) =>
@@ -42,6 +45,7 @@ mixin _$LoginState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_loadFailed value) loadFailed,
     required TResult Function(_Loaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +53,7 @@ mixin _$LoginState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_loadFailed value)? loadFailed,
     TResult? Function(_Loaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +61,7 @@ mixin _$LoginState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_loadFailed value)? loadFailed,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) =>
@@ -119,6 +125,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(User user) loading,
+    required TResult Function(LoginFailure loginFailure) loadFailed,
     required TResult Function() loaded,
   }) {
     return initial();
@@ -129,6 +136,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(User user)? loading,
+    TResult? Function(LoginFailure loginFailure)? loadFailed,
     TResult? Function()? loaded,
   }) {
     return initial?.call();
@@ -139,6 +147,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(User user)? loading,
+    TResult Function(LoginFailure loginFailure)? loadFailed,
     TResult Function()? loaded,
     required TResult orElse(),
   }) {
@@ -153,6 +162,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_loadFailed value) loadFailed,
     required TResult Function(_Loaded value) loaded,
   }) {
     return initial(this);
@@ -163,6 +173,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_loadFailed value)? loadFailed,
     TResult? Function(_Loaded value)? loaded,
   }) {
     return initial?.call(this);
@@ -173,6 +184,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_loadFailed value)? loadFailed,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
@@ -262,6 +274,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(User user) loading,
+    required TResult Function(LoginFailure loginFailure) loadFailed,
     required TResult Function() loaded,
   }) {
     return loading(user);
@@ -272,6 +285,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(User user)? loading,
+    TResult? Function(LoginFailure loginFailure)? loadFailed,
     TResult? Function()? loaded,
   }) {
     return loading?.call(user);
@@ -282,6 +296,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(User user)? loading,
+    TResult Function(LoginFailure loginFailure)? loadFailed,
     TResult Function()? loaded,
     required TResult orElse(),
   }) {
@@ -296,6 +311,7 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_loadFailed value) loadFailed,
     required TResult Function(_Loaded value) loaded,
   }) {
     return loading(this);
@@ -306,6 +322,7 @@ class _$_Loading implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_loadFailed value)? loadFailed,
     TResult? Function(_Loaded value)? loaded,
   }) {
     return loading?.call(this);
@@ -316,6 +333,7 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_loadFailed value)? loadFailed,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
@@ -332,6 +350,152 @@ abstract class _Loading implements LoginState {
   User get user;
   @JsonKey(ignore: true)
   _$$_LoadingCopyWith<_$_Loading> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_loadFailedCopyWith<$Res> {
+  factory _$$_loadFailedCopyWith(
+          _$_loadFailed value, $Res Function(_$_loadFailed) then) =
+      __$$_loadFailedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LoginFailure loginFailure});
+}
+
+/// @nodoc
+class __$$_loadFailedCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res, _$_loadFailed>
+    implements _$$_loadFailedCopyWith<$Res> {
+  __$$_loadFailedCopyWithImpl(
+      _$_loadFailed _value, $Res Function(_$_loadFailed) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? loginFailure = null,
+  }) {
+    return _then(_$_loadFailed(
+      null == loginFailure
+          ? _value.loginFailure
+          : loginFailure // ignore: cast_nullable_to_non_nullable
+              as LoginFailure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_loadFailed implements _loadFailed {
+  const _$_loadFailed(this.loginFailure);
+
+  @override
+  final LoginFailure loginFailure;
+
+  @override
+  String toString() {
+    return 'LoginState.loadFailed(loginFailure: $loginFailure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_loadFailed &&
+            (identical(other.loginFailure, loginFailure) ||
+                other.loginFailure == loginFailure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, loginFailure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_loadFailedCopyWith<_$_loadFailed> get copyWith =>
+      __$$_loadFailedCopyWithImpl<_$_loadFailed>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(User user) loading,
+    required TResult Function(LoginFailure loginFailure) loadFailed,
+    required TResult Function() loaded,
+  }) {
+    return loadFailed(loginFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(User user)? loading,
+    TResult? Function(LoginFailure loginFailure)? loadFailed,
+    TResult? Function()? loaded,
+  }) {
+    return loadFailed?.call(loginFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(User user)? loading,
+    TResult Function(LoginFailure loginFailure)? loadFailed,
+    TResult Function()? loaded,
+    required TResult orElse(),
+  }) {
+    if (loadFailed != null) {
+      return loadFailed(loginFailure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_loadFailed value) loadFailed,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return loadFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_loadFailed value)? loadFailed,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loadFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_loadFailed value)? loadFailed,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loadFailed != null) {
+      return loadFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _loadFailed implements LoginState {
+  const factory _loadFailed(final LoginFailure loginFailure) = _$_loadFailed;
+
+  LoginFailure get loginFailure;
+  @JsonKey(ignore: true)
+  _$$_loadFailedCopyWith<_$_loadFailed> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -373,6 +537,7 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(User user) loading,
+    required TResult Function(LoginFailure loginFailure) loadFailed,
     required TResult Function() loaded,
   }) {
     return loaded();
@@ -383,6 +548,7 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(User user)? loading,
+    TResult? Function(LoginFailure loginFailure)? loadFailed,
     TResult? Function()? loaded,
   }) {
     return loaded?.call();
@@ -393,6 +559,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(User user)? loading,
+    TResult Function(LoginFailure loginFailure)? loadFailed,
     TResult Function()? loaded,
     required TResult orElse(),
   }) {
@@ -407,6 +574,7 @@ class _$_Loaded implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_loadFailed value) loadFailed,
     required TResult Function(_Loaded value) loaded,
   }) {
     return loaded(this);
@@ -417,6 +585,7 @@ class _$_Loaded implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_loadFailed value)? loadFailed,
     TResult? Function(_Loaded value)? loaded,
   }) {
     return loaded?.call(this);
@@ -427,6 +596,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_loadFailed value)? loadFailed,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {

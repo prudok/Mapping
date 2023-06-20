@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mapping/features/home/presentation/views/home_view.dart';
 
 import '../../../../core/constants/colors/app_colors.dart';
-import '../../../../core/constants/device_sizes/device.dart';
-import '../../../../core/constants/styles/buttons/common_button_style.dart';
 import '../../../../utils/validators/login_validator.dart';
 import '../../domain/entities/user/user.dart';
 import '../cubit/login_cubit.dart';
+import '../widget/error_alert_dialog.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -26,13 +24,14 @@ class _LoginViewState extends State<LoginView> {
     final loginCubit = context.watch<LoginCubit>();
 
     return Scaffold(
+      backgroundColor: AppColors.lightGrey,
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                SizedBox(height: Device.height! * 0.5),
+                SizedBox(height: MediaQuery.sizeOf(context).height * 0.35),
                 const Icon(Icons.map, size: 80, color: AppColors.purple),
                 Form(
                   key: _signInKey,
@@ -43,41 +42,78 @@ class _LoginViewState extends State<LoginView> {
                           minWidth: 100,
                           maxWidth: 400,
                         ),
-                        child: TextFormField(
-                          validator: (value) =>
-                              LoginValidator.emailValidator(value),
-                          controller: _emailController,
-                          decoration: const InputDecoration(hintText: 'Email'),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.white,
+                          ),
+                          child: TextFormField(
+                            validator: (value) =>
+                                LoginValidator.emailValidator(value),
+                            controller: _emailController,
+                            decoration: const InputDecoration(
+                              hintText: 'Email',
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                      SizedBox(height: Device.height! * 0.02),
+                      SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.02),
                       ConstrainedBox(
                         constraints: const BoxConstraints(
                           minWidth: 100,
                           maxWidth: 400,
                         ),
-                        child: TextFormField(
-                          obscureText: true,
-                          validator: (value) =>
-                              LoginValidator.passwordValidator(value),
-                          controller: _passwordController,
-                          decoration:
-                              const InputDecoration(hintText: 'Password'),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.white,
+                          ),
+                          child: TextFormField(
+                            obscureText: true,
+                            validator: (value) =>
+                                LoginValidator.passwordValidator(value),
+                            controller: _passwordController,
+                            decoration: const InputDecoration(
+                              hintText: 'Password',
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: Device.height! * 0.05),
-                ElevatedButton(
-                  style: commonButtonStyle,
-                  onPressed: () {
-                    loginCubit.signInUser(User(
-                      email: _emailController.text,
-                      password: _passwordController.text,
-                    ));
-                  },
-                  child: const Text('Log In'),
+                SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
+                ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(minWidth: 100, maxWidth: 400),
+                  child: SizedBox.expand(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 15),
+                        backgroundColor: AppColors.purple,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                      ),
+                      onPressed: () {
+                        if (_signInKey.currentState!.validate()) {
+                          loginCubit.signInUser(User(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          ));
+                        }
+                      },
+                      child: const Text('Log In'),
+                    ),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -89,17 +125,30 @@ class _LoginViewState extends State<LoginView> {
                     )
                   ],
                 ),
-                loginCubit.state.maybeWhen(
-                  loaded: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomeView(),
-                      ),
+                BlocConsumer<LoginCubit, LoginState>(
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                      loading: (User user) {
+                        return const CircularProgressIndicator();
+                      },
+                      orElse: () {
+                        return const SizedBox();
+                      },
                     );
-                    return const SizedBox();
                   },
-                  orElse: () => const SizedBox(),
+                  listener: (context, state) {
+                    state.maybeWhen(
+                      loadFailed: (failure) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return ErrorAlertDialog(error: failure);
+                          },
+                        );
+                      },
+                      orElse: () {},
+                    );
+                  },
                 ),
               ],
             ),
