@@ -1,5 +1,9 @@
+import 'package:dartz/dartz.dart';
+
 import '../../domain/entities/user/user.dart';
 
-abstract class  FirebaseLogin {
-  Future<User> loadUser(User user);
+enum LoginFailure { invalidCredentials, error }
+
+abstract class FirebaseLogin {
+  Future<Either<LoginFailure, User>> loadUser(User user);
 }
