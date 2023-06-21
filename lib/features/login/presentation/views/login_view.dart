@@ -86,7 +86,7 @@ class _LoginViewState extends State<LoginView> {
                     ],
                   ),
                   SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.02,
+                    height: MediaQuery.sizeOf(context).height * 0.05,
                   ),
                   BlocConsumer<LoginCubit, LoginState>(
                     builder: (context, state) {
@@ -125,6 +125,3 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
-
-
-
