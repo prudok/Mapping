@@ -19,6 +19,12 @@ final GoRouter router = GoRouter(
               return const LoginView();
             }
         ),
+        GoRoute(
+            path: 'register',
+            builder: (BuildContext context, GoRouterState state) {
+              return const LoginView();
+            }
+        ),
       ]
     ),
   ],

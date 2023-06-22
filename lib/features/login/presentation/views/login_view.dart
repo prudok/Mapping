@@ -68,9 +68,9 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   LoginButton(
                     signInKey: _signInKey,
-                    loginCubit: loginCubit,
                     emailController: _emailController,
                     passwordController: _passwordController,
+                    onPressed: loginCubit.signInUser,
                   ),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.02,

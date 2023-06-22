@@ -7,12 +7,15 @@ import '../../data/repository/login_repository_impl.dart';
 import '../../domain/entities/user/user.dart';
 
 part 'login_cubit.freezed.dart';
+
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(
-      {required this.firebaseLoginImpl, required this.loginRepositoryImpl})
-      : super(const LoginState.initial());
+  LoginCubit({
+    required this.firebaseLoginImpl,
+    required this.loginRepositoryImpl,
+  }) : super(const LoginState.initial());
+
   final FirebaseLoginImpl firebaseLoginImpl;
   final LoginRepositoryImpl loginRepositoryImpl;
 
