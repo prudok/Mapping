@@ -3,6 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'features/login/data/datasource/firebase_login_impl.dart';
 import 'features/login/data/repository/login_repository_impl.dart';
 import 'features/login/presentation/cubit/login_cubit.dart';
+import 'features/register/data/datasource/firebase_register_impl.dart';
+import 'features/register/data/repository/register_repository_impl.dart';
+import 'features/register/presentation/cubit/register_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -14,13 +17,22 @@ Future<void> setup() async {
       loginRepositoryImpl: sl(),
     ),
   );
-  // sl.registerFactory<RegisterCubit>(sl());
+  sl.registerFactory<RegisterCubit>(
+    () => RegisterCubit(
+      firebaseRegisterImpl: sl(),
+      registerRepositoryImpl: sl(),
+    ),
+  );
 
-  // Firebase Datasources
+  // Firebase Data sources
   sl.registerFactory<FirebaseLoginImpl>(() => FirebaseLoginImpl());
+  sl.registerFactory<FirebaseRegisterImpl>(() => FirebaseRegisterImpl());
 
-  // Repotitories
+  // Repositories
   sl.registerFactory<LoginRepositoryImpl>(
     () => LoginRepositoryImpl(sl()),
+  );
+  sl.registerFactory<RegisterRepositoryImpl>(
+    () => RegisterRepositoryImpl(sl()),
   );
 }

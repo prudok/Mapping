@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapping/config/app_router.dart';
+import 'package:mapping/utils/validators/login_validator.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../domain/entities/user/user.dart';
@@ -50,6 +51,7 @@ class _LoginViewState extends State<LoginView> {
                       children: [
                         LoginTextField(
                           controller: _emailController,
+                          validator: LoginValidator.emailValidator,
                           isEmailTextFormField: true,
                           hintText: 'Email',
                         ),
@@ -58,6 +60,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                         LoginTextField(
                           controller: _passwordController,
+                          validator: LoginValidator.passwordValidator,
                           isEmailTextFormField: false,
                           hintText: 'Password',
                           isObscureText: true,

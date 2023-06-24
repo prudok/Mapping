@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mapping/core/constants/app_styles.dart';
 
-import '../../../../core/constants/app_colors.dart';
 import '../../domain/entities/user/user.dart';
 
 class LoginButton extends StatelessWidget {
@@ -29,16 +29,7 @@ class LoginButton extends StatelessWidget {
       ),
       child: SizedBox.expand(
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 15,
-            ),
-            backgroundColor: AppColors.purple,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
+          style: AppStyles.widePurpleButtonStyle,
           onPressed: () {
             if (_signInKey.currentState!.validate()) {
               onPressed(User(

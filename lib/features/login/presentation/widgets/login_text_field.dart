@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../../../../utils/validators/login_validator.dart';
 import 'login_form_field.dart';
 
 class LoginTextField extends StatelessWidget {
@@ -9,6 +8,7 @@ class LoginTextField extends StatelessWidget {
   final bool? isObscureText;
   final TextEditingController controller;
   final bool isEmailTextFormField;
+  final Function(String?) validator;
 
   const LoginTextField({
     super.key,
@@ -16,6 +16,7 @@ class LoginTextField extends StatelessWidget {
     this.isObscureText,
     required this.controller,
     required this.isEmailTextFormField,
+    required this.validator,
   });
 
   @override
@@ -32,9 +33,7 @@ class LoginTextField extends StatelessWidget {
         ),
         child: LoginFormField(
           controller: controller,
-          validator: (value) => isEmailTextFormField
-              ? LoginValidator.emailValidator(value)
-              : LoginValidator.passwordValidator(value),
+          validator: (value) => validator(value),
           hintText: hintText ?? '',
           isObscureText: isObscureText,
         ),

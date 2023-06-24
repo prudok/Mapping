@@ -18,8 +18,7 @@ class Mapping extends StatelessWidget {
           create: (_) => sl<LoginCubit>(),
         ),
         BlocProvider(
-          // TODO: add into service_locator
-          create: (_) => RegisterCubit(),
+          create: (_) => sl<RegisterCubit>(),
         )
       ],
       child: MaterialApp.router(

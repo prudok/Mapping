@@ -21,6 +21,7 @@ mixin _$RegisterState {
     required TResult Function() initial,
     required TResult Function() registering,
     required TResult Function() registered,
+    required TResult Function(RegisterFailure failure) registerFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$RegisterState {
     TResult? Function()? initial,
     TResult? Function()? registering,
     TResult? Function()? registered,
+    TResult? Function(RegisterFailure failure)? registerFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$RegisterState {
     TResult Function()? initial,
     TResult Function()? registering,
     TResult Function()? registered,
+    TResult Function(RegisterFailure failure)? registerFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$RegisterState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Registering value) registering,
     required TResult Function(_Registered value) registered,
+    required TResult Function(_RegisterFailed value) registerFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$RegisterState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Registering value)? registering,
     TResult? Function(_Registered value)? registered,
+    TResult? Function(_RegisterFailed value)? registerFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$RegisterState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Registering value)? registering,
     TResult Function(_Registered value)? registered,
+    TResult Function(_RegisterFailed value)? registerFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() registering,
     required TResult Function() registered,
+    required TResult Function(RegisterFailure failure) registerFailed,
   }) {
     return initial();
   }
@@ -130,6 +137,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? registering,
     TResult? Function()? registered,
+    TResult? Function(RegisterFailure failure)? registerFailed,
   }) {
     return initial?.call();
   }
@@ -140,6 +148,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? registering,
     TResult Function()? registered,
+    TResult Function(RegisterFailure failure)? registerFailed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -154,6 +163,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Registering value) registering,
     required TResult Function(_Registered value) registered,
+    required TResult Function(_RegisterFailed value) registerFailed,
   }) {
     return initial(this);
   }
@@ -164,6 +174,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Registering value)? registering,
     TResult? Function(_Registered value)? registered,
+    TResult? Function(_RegisterFailed value)? registerFailed,
   }) {
     return initial?.call(this);
   }
@@ -174,6 +185,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Registering value)? registering,
     TResult Function(_Registered value)? registered,
+    TResult Function(_RegisterFailed value)? registerFailed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -228,6 +240,7 @@ class _$_Registering implements _Registering {
     required TResult Function() initial,
     required TResult Function() registering,
     required TResult Function() registered,
+    required TResult Function(RegisterFailure failure) registerFailed,
   }) {
     return registering();
   }
@@ -238,6 +251,7 @@ class _$_Registering implements _Registering {
     TResult? Function()? initial,
     TResult? Function()? registering,
     TResult? Function()? registered,
+    TResult? Function(RegisterFailure failure)? registerFailed,
   }) {
     return registering?.call();
   }
@@ -248,6 +262,7 @@ class _$_Registering implements _Registering {
     TResult Function()? initial,
     TResult Function()? registering,
     TResult Function()? registered,
+    TResult Function(RegisterFailure failure)? registerFailed,
     required TResult orElse(),
   }) {
     if (registering != null) {
@@ -262,6 +277,7 @@ class _$_Registering implements _Registering {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Registering value) registering,
     required TResult Function(_Registered value) registered,
+    required TResult Function(_RegisterFailed value) registerFailed,
   }) {
     return registering(this);
   }
@@ -272,6 +288,7 @@ class _$_Registering implements _Registering {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Registering value)? registering,
     TResult? Function(_Registered value)? registered,
+    TResult? Function(_RegisterFailed value)? registerFailed,
   }) {
     return registering?.call(this);
   }
@@ -282,6 +299,7 @@ class _$_Registering implements _Registering {
     TResult Function(_Initial value)? initial,
     TResult Function(_Registering value)? registering,
     TResult Function(_Registered value)? registered,
+    TResult Function(_RegisterFailed value)? registerFailed,
     required TResult orElse(),
   }) {
     if (registering != null) {
@@ -336,6 +354,7 @@ class _$_Registered implements _Registered {
     required TResult Function() initial,
     required TResult Function() registering,
     required TResult Function() registered,
+    required TResult Function(RegisterFailure failure) registerFailed,
   }) {
     return registered();
   }
@@ -346,6 +365,7 @@ class _$_Registered implements _Registered {
     TResult? Function()? initial,
     TResult? Function()? registering,
     TResult? Function()? registered,
+    TResult? Function(RegisterFailure failure)? registerFailed,
   }) {
     return registered?.call();
   }
@@ -356,6 +376,7 @@ class _$_Registered implements _Registered {
     TResult Function()? initial,
     TResult Function()? registering,
     TResult Function()? registered,
+    TResult Function(RegisterFailure failure)? registerFailed,
     required TResult orElse(),
   }) {
     if (registered != null) {
@@ -370,6 +391,7 @@ class _$_Registered implements _Registered {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Registering value) registering,
     required TResult Function(_Registered value) registered,
+    required TResult Function(_RegisterFailed value) registerFailed,
   }) {
     return registered(this);
   }
@@ -380,6 +402,7 @@ class _$_Registered implements _Registered {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Registering value)? registering,
     TResult? Function(_Registered value)? registered,
+    TResult? Function(_RegisterFailed value)? registerFailed,
   }) {
     return registered?.call(this);
   }
@@ -390,6 +413,7 @@ class _$_Registered implements _Registered {
     TResult Function(_Initial value)? initial,
     TResult Function(_Registering value)? registering,
     TResult Function(_Registered value)? registered,
+    TResult Function(_RegisterFailed value)? registerFailed,
     required TResult orElse(),
   }) {
     if (registered != null) {
@@ -401,4 +425,150 @@ class _$_Registered implements _Registered {
 
 abstract class _Registered implements RegisterState {
   const factory _Registered() = _$_Registered;
+}
+
+/// @nodoc
+abstract class _$$_RegisterFailedCopyWith<$Res> {
+  factory _$$_RegisterFailedCopyWith(
+          _$_RegisterFailed value, $Res Function(_$_RegisterFailed) then) =
+      __$$_RegisterFailedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RegisterFailure failure});
+}
+
+/// @nodoc
+class __$$_RegisterFailedCopyWithImpl<$Res>
+    extends _$RegisterStateCopyWithImpl<$Res, _$_RegisterFailed>
+    implements _$$_RegisterFailedCopyWith<$Res> {
+  __$$_RegisterFailedCopyWithImpl(
+      _$_RegisterFailed _value, $Res Function(_$_RegisterFailed) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failure = null,
+  }) {
+    return _then(_$_RegisterFailed(
+      failure: null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as RegisterFailure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RegisterFailed implements _RegisterFailed {
+  const _$_RegisterFailed({required this.failure});
+
+  @override
+  final RegisterFailure failure;
+
+  @override
+  String toString() {
+    return 'RegisterState.registerFailed(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RegisterFailed &&
+            (identical(other.failure, failure) || other.failure == failure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RegisterFailedCopyWith<_$_RegisterFailed> get copyWith =>
+      __$$_RegisterFailedCopyWithImpl<_$_RegisterFailed>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() registering,
+    required TResult Function() registered,
+    required TResult Function(RegisterFailure failure) registerFailed,
+  }) {
+    return registerFailed(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? registering,
+    TResult? Function()? registered,
+    TResult? Function(RegisterFailure failure)? registerFailed,
+  }) {
+    return registerFailed?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? registering,
+    TResult Function()? registered,
+    TResult Function(RegisterFailure failure)? registerFailed,
+    required TResult orElse(),
+  }) {
+    if (registerFailed != null) {
+      return registerFailed(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Registering value) registering,
+    required TResult Function(_Registered value) registered,
+    required TResult Function(_RegisterFailed value) registerFailed,
+  }) {
+    return registerFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Registering value)? registering,
+    TResult? Function(_Registered value)? registered,
+    TResult? Function(_RegisterFailed value)? registerFailed,
+  }) {
+    return registerFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Registering value)? registering,
+    TResult Function(_Registered value)? registered,
+    TResult Function(_RegisterFailed value)? registerFailed,
+    required TResult orElse(),
+  }) {
+    if (registerFailed != null) {
+      return registerFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RegisterFailed implements RegisterState {
+  const factory _RegisterFailed({required final RegisterFailure failure}) =
+      _$_RegisterFailed;
+
+  RegisterFailure get failure;
+  @JsonKey(ignore: true)
+  _$$_RegisterFailedCopyWith<_$_RegisterFailed> get copyWith =>
+      throw _privateConstructorUsedError;
 }

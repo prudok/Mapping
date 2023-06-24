@@ -1,11 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mapping/utils/validators/login_validator.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../../../login/presentation/widgets/login_button.dart';
 import '../../../login/presentation/widgets/login_text_field.dart';
 import '../cubit/register_cubit.dart';
+import '../widgets/register_button.dart';
 
 @RoutePage()
 class RegisterView extends StatefulWidget {
@@ -18,6 +19,8 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _surnameController = TextEditingController();
   final _registerKey = GlobalKey<FormState>();
 
   @override
@@ -46,7 +49,26 @@ class _RegisterViewState extends State<RegisterView> {
                     child: Column(
                       children: [
                         LoginTextField(
+                          controller: _nameController,
+                          validator: LoginValidator.nameValidator,
+                          isEmailTextFormField: false,
+                          hintText: 'Name',
+                        ),
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.02,
+                        ),
+                        LoginTextField(
+                          controller: _surnameController,
+                          validator: LoginValidator.surnameValidator,
+                          isEmailTextFormField: false,
+                          hintText: 'Surname',
+                        ),
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.02,
+                        ),
+                        LoginTextField(
                           controller: _emailController,
+                          validator: LoginValidator.emailValidator,
                           isEmailTextFormField: true,
                           hintText: 'Email',
                         ),
@@ -55,6 +77,7 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
                         LoginTextField(
                           controller: _passwordController,
+                          validator: LoginValidator.passwordValidator,
                           isEmailTextFormField: false,
                           hintText: 'Password',
                           isObscureText: true,
@@ -65,25 +88,13 @@ class _RegisterViewState extends State<RegisterView> {
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.05,
                   ),
-                  LoginButton(
-                    signInKey: _registerKey,
+                  RegisterButton(
+                    registerKey: _registerKey,
+                    nameController: _nameController,
+                    surnameController: _surnameController,
                     emailController: _emailController,
                     passwordController: _passwordController,
-                    // TODO: create generic inside LoginButton
-                    onPressed: (_) {},
-                  ),
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.02,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Not Registered Yet?'),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text('Register'),
-                      )
-                    ],
+                    onPressed: registerCubit.registerUser,
                   ),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.05,
@@ -97,3 +108,5 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 }
+
+
