@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'config/router/router.dart';
+import 'config/app_router.dart';
 import 'features/login/presentation/cubit/login_cubit.dart';
+import 'features/register/presentation/cubit/register_cubit.dart';
 import 'service_locator.dart';
 
 class Mapping extends StatelessWidget {
@@ -10,12 +11,20 @@ class Mapping extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return BlocProvider(
-      create: (_) => sl<LoginCubit>(),
+    final AppRouter appRouter = AppRouter();
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => sl<LoginCubit>(),
+        ),
+        BlocProvider(
+          // TODO: add into service_locator
+          create: (_) => RegisterCubit(),
+        )
+      ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        routerConfig: router,
+        routerConfig: appRouter.config(),
       ),
     );
   }

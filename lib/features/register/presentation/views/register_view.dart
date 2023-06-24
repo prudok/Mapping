@@ -1,11 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/constants/colors/app_colors.dart';
+import '../../../../core/constants/app_colors.dart';
 import '../../../login/presentation/widgets/login_button.dart';
 import '../../../login/presentation/widgets/login_text_field.dart';
 import '../cubit/register_cubit.dart';
 
+@RoutePage()
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
 
@@ -18,10 +20,8 @@ class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _passwordController = TextEditingController();
   final _registerKey = GlobalKey<FormState>();
 
-
   @override
   Widget build(BuildContext context) {
-    // TODO: put a cubit into MultiBLoCProvider
     final registerCubit = BlocProvider.of<RegisterCubit>(context);
 
     return Scaffold(
@@ -39,9 +39,7 @@ class _RegisterViewState extends State<RegisterView> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  SizedBox(height: MediaQuery
-                      .sizeOf(context)
-                      .height * 0.35),
+                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.35),
                   const Icon(Icons.map, size: 80, color: AppColors.purple),
                   Form(
                     key: _registerKey,
@@ -53,9 +51,7 @@ class _RegisterViewState extends State<RegisterView> {
                           hintText: 'Email',
                         ),
                         SizedBox(
-                          height: MediaQuery
-                              .sizeOf(context)
-                              .height * 0.02,
+                          height: MediaQuery.sizeOf(context).height * 0.02,
                         ),
                         LoginTextField(
                           controller: _passwordController,
@@ -67,9 +63,7 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery
-                        .sizeOf(context)
-                        .height * 0.05,
+                    height: MediaQuery.sizeOf(context).height * 0.05,
                   ),
                   LoginButton(
                     signInKey: _registerKey,
@@ -79,9 +73,7 @@ class _RegisterViewState extends State<RegisterView> {
                     onPressed: (_) {},
                   ),
                   SizedBox(
-                    height: MediaQuery
-                        .sizeOf(context)
-                        .height * 0.02,
+                    height: MediaQuery.sizeOf(context).height * 0.02,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -94,9 +86,7 @@ class _RegisterViewState extends State<RegisterView> {
                     ],
                   ),
                   SizedBox(
-                    height: MediaQuery
-                        .sizeOf(context)
-                        .height * 0.05,
+                    height: MediaQuery.sizeOf(context).height * 0.05,
                   ),
                 ],
               ),

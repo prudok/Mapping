@@ -7,13 +7,14 @@ import 'features/login/presentation/cubit/login_cubit.dart';
 final sl = GetIt.instance;
 
 Future<void> setup() async {
-  // Blocs
+  // Cubits
   sl.registerFactory<LoginCubit>(
     () => LoginCubit(
       firebaseLoginImpl: sl(),
       loginRepositoryImpl: sl(),
     ),
   );
+  // sl.registerFactory<RegisterCubit>(sl());
 
   // Firebase Datasources
   sl.registerFactory<FirebaseLoginImpl>(() => FirebaseLoginImpl());

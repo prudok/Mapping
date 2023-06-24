@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/colors/app_colors.dart';
+import '../../../../core/constants/app_colors.dart';
 import '../../domain/entities/user/user.dart';
 
 class LoginButton extends StatelessWidget {

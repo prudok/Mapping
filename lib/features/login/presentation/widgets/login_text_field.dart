@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/colors/app_colors.dart';
+import '../../../../core/constants/app_colors.dart';
 import '../../../../utils/validators/login_validator.dart';
 import 'login_form_field.dart';
 

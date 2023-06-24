@@ -1,5 +1,5 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../data/datasource/firebase_login.dart';
 
@@ -23,7 +23,7 @@ class ErrorAlertDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            if (context.canPop()) {
+            if (context.router.canPop()) {
               Navigator.of(context).pop();
             }
           },

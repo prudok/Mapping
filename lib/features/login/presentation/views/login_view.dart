@@ -1,14 +1,16 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:mapping/config/app_router.dart';
 
-import '../../../../core/constants/colors/app_colors.dart';
+import '../../../../core/constants/app_colors.dart';
 import '../../domain/entities/user/user.dart';
 import '../cubit/login_cubit.dart';
 import '../widgets/error_alert_dialog.dart';
 import '../widgets/login_button.dart';
 import '../widgets/login_text_field.dart';
 
+@RoutePage()
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -110,7 +112,7 @@ class _LoginViewState extends State<LoginView> {
                           );
                         },
                         loaded: () {
-                          context.go('/');
+                          context.router.navigate(const HomeRoute());
                         },
                         orElse: () {},
                       );

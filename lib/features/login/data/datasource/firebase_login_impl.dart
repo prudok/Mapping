@@ -1,13 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart'
-    show FirebaseAuth, FirebaseAuthException;
+import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuthException;
 
+import '../../../../utils/firebase_instance.dart';
 import '../../domain/entities/user/user.dart';
 import 'firebase_login.dart';
 
 class FirebaseLoginImpl extends FirebaseLogin {
-  final firebaseInstance = FirebaseAuth.instance;
-
   @override
   Future<Either<LoginFailure, User>> loadUser(User user) async {
     try {
