@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mapping/config/app_router.dart';
-import 'package:mapping/utils/cubits/user_auth_cubit.dart';
-import 'package:mapping/utils/validators/login_validator.dart';
 
+import '../../../../config/app_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../utils/cubits/user_auth_cubit.dart';
+import '../../../../utils/validators/login_validator.dart';
 import '../../domain/entities/user/user.dart';
 import '../cubit/login_cubit.dart';
 import '../widgets/error_alert_dialog.dart';
