@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mapping/utils/validators/login_validator.dart';
 
+import '../../../../config/app_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../utils/validators/login_validator.dart';
+import '../../../login/data/datasource/firebase_login.dart';
+import '../../../login/presentation/widgets/error_alert_dialog.dart';
 import '../../../login/presentation/widgets/login_text_field.dart';
 import '../cubit/register_cubit.dart';
 import '../widgets/register_button.dart';
@@ -42,7 +45,7 @@ class _RegisterViewState extends State<RegisterView> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.35),
+                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.25),
                   const Icon(Icons.map, size: 80, color: AppColors.purple),
                   Form(
                     key: _registerKey,
@@ -97,7 +100,42 @@ class _RegisterViewState extends State<RegisterView> {
                     onPressed: registerCubit.registerUser,
                   ),
                   SizedBox(
+                    height: MediaQuery.sizeOf(context).height * 0.02,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Already have an account?'),
+                      TextButton(
+                        onPressed: () {
+                          context.navigateTo(const LoginRoute());
+                        },
+                        child: const Text('Sign In'),
+                      )
+                    ],
+                  ),
+                  SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.05,
+                  ),
+                  BlocConsumer<RegisterCubit, RegisterState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        registering: () => const CircularProgressIndicator(),
+                        orElse: () => const SizedBox(),
+                      );
+                    },
+                    listener: (context, state) {
+                      state.maybeWhen(
+                        // TODO: implement register error
+                        registerFailed: (failure) => const ErrorAlertDialog(
+                          error: LoginFailure.invalidCredentials,
+                        ),
+                        registered: () {
+                          context.router.navigate(const HomeRoute());
+                        },
+                        orElse: () {},
+                      );
+                    },
                   ),
                 ],
               ),
@@ -108,5 +146,3 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 }
-
-

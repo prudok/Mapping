@@ -5,6 +5,7 @@ import 'config/app_router.dart';
 import 'features/login/presentation/cubit/login_cubit.dart';
 import 'features/register/presentation/cubit/register_cubit.dart';
 import 'service_locator.dart';
+import 'utils/cubits/user_auth_cubit.dart';
 
 class Mapping extends StatelessWidget {
   const Mapping({super.key});
@@ -19,7 +20,10 @@ class Mapping extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => sl<RegisterCubit>(),
-        )
+        ),
+        BlocProvider(
+          create: (_) => sl<UserAuthCubit>(),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

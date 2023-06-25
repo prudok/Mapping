@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapping/core/constants/app_colors.dart';
 
 class LoginFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -21,6 +22,10 @@ class LoginFormField extends StatelessWidget {
       validator: (value) => validator(value),
       controller: controller,
       decoration: InputDecoration(
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.red),
+        ),
         isDense: true,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 10,

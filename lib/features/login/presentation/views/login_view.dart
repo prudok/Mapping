@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapping/config/app_router.dart';
+import 'package:mapping/utils/cubits/user_auth_cubit.dart';
 import 'package:mapping/utils/validators/login_validator.dart';
 
 import '../../../../core/constants/app_colors.dart';
@@ -26,7 +27,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    final loginCubit = context.watch<LoginCubit>();
+    final loginCubit = BlocProvider.of<LoginCubit>(context);
+    final userAuthCubit = BlocProvider.of<UserAuthCubit>(context);
 
     return Scaffold(
       body: ListView(
@@ -85,41 +87,43 @@ class _LoginViewState extends State<LoginView> {
                     children: [
                       const Text('Not Registered Yet?'),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.navigateTo(const RegisterRoute());
+                        },
                         child: const Text('Register'),
                       )
                     ],
                   ),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.05,
-                  ),
-                  BlocConsumer<LoginCubit, LoginState>(
-                    builder: (context, state) {
-                      return state.maybeWhen(
-                        loading: (User user) {
-                          return const CircularProgressIndicator();
-                        },
-                        orElse: () {
-                          return const SizedBox();
-                        },
-                      );
-                    },
-                    listener: (context, state) {
-                      state.maybeWhen(
-                        loadFailed: (failure) {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return ErrorAlertDialog(error: failure);
-                            },
-                          );
-                        },
-                        loaded: () {
-                          context.router.navigate(const HomeRoute());
-                        },
-                        orElse: () {},
-                      );
-                    },
+                    child: BlocConsumer<LoginCubit, LoginState>(
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                          loading: (User user) {
+                            return const CircularProgressIndicator();
+                          },
+                          orElse: () {
+                            return const SizedBox();
+                          },
+                        );
+                      },
+                      listener: (context, state) {
+                        state.maybeWhen(
+                          loadFailed: (failure) {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return ErrorAlertDialog(error: failure);
+                              },
+                            );
+                          },
+                          loaded: () {
+                            context.router.navigate(const HomeRoute());
+                          },
+                          orElse: () {},
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
