@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../widgets/home_profile_app_bar.dart';
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -106,36 +107,3 @@ class HomeView extends StatelessWidget {
   }
 }
 
-class HomeProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeProfileAppBar({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: AppColors.purple,
-      elevation: 0,
-      leading: IconButton(
-        icon: const Icon(Icons.access_time),
-        onPressed: () {},
-      ),
-      title: const Column(
-        children: [
-          Text('Template'),
-          Text('Template'),
-        ],
-      ),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.settings),
-          onPressed: () {},
-        )
-      ],
-    );
-  }
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-}

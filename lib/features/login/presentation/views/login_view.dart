@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../config/app_router.dart';
 import '../../../../core/constants/app_colors.dart';
-import '../../../../utils/cubits/user_auth_cubit.dart';
 import '../../../../utils/validators/login_validator.dart';
 import '../../domain/entities/user/user.dart';
 import '../cubit/login_cubit.dart';
@@ -28,7 +27,6 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     final loginCubit = BlocProvider.of<LoginCubit>(context);
-    final userAuthCubit = BlocProvider.of<UserAuthCubit>(context);
 
     return Scaffold(
       body: ListView(
