@@ -8,6 +8,7 @@ import 'service_locator.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: "dev project",
     options: DefaultFirebaseOptions.ios,
   );
   await setup();

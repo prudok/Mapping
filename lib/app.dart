@@ -35,6 +35,7 @@ class Mapping extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         routerDelegate: AutoRouterDelegate.declarative(
           _appRouter,
           routes: (_) => [
