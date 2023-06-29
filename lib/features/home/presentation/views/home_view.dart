@@ -37,6 +37,7 @@ class HomeView extends StatelessWidget {
           ),
         ],
         body: ListView(
+          padding: EdgeInsets.zero,
           children: [
             Stack(
               children: [
