@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../config/app_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_styles.dart';
 import '../../../../utils/validators/login_validator.dart';
-import '../../domain/entities/user/user.dart';
 import '../cubit/login_cubit.dart';
 import '../widgets/error_alert_dialog.dart';
 import '../widgets/login_button.dart';
 import '../widgets/login_text_field.dart';
+import '../widgets/register_option.dart';
 
 @RoutePage()
 class LoginView extends StatefulWidget {
@@ -25,6 +26,13 @@ class _LoginViewState extends State<LoginView> {
   final _signInKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final loginCubit = BlocProvider.of<LoginCubit>(context);
 
@@ -32,12 +40,8 @@ class _LoginViewState extends State<LoginView> {
       body: ListView(
         children: [
           Container(
-            decoration: const BoxDecoration(
+            decoration: AppStyles.roundedOnlyBottomEdges.copyWith(
               color: AppColors.lightGrey,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50),
-              ),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -80,24 +84,13 @@ class _LoginViewState extends State<LoginView> {
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.02,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Not Registered Yet?'),
-                      TextButton(
-                        onPressed: () {
-                          context.navigateTo(const RegisterRoute());
-                        },
-                        child: const Text('Register'),
-                      )
-                    ],
-                  ),
+                  const RegisterOption(),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.05,
                     child: BlocConsumer<LoginCubit, LoginState>(
                       builder: (context, state) {
                         return state.maybeWhen(
-                          loading: (User user) {
+                          loading: () {
                             return const CircularProgressIndicator();
                           },
                           orElse: () {
@@ -132,3 +125,4 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
+

@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../data/datasource/firebase_login.dart';
 import '../../data/datasource/firebase_login_impl.dart';
 import '../../data/repository/login_repository_impl.dart';
-import '../../domain/entities/user/user.dart';
+import '../../domain/entities/user/login_user.dart';
 
 part 'login_cubit.freezed.dart';
 
@@ -19,8 +19,8 @@ class LoginCubit extends Cubit<LoginState> {
   final FirebaseLoginImpl firebaseLoginImpl;
   final LoginRepositoryImpl loginRepositoryImpl;
 
-  void signInUser(User user) async {
-    emit(LoginState.loading(user: user));
+  void signInUser(LoginUser user) async {
+    emit(const LoginState.loading());
     final result = await loginRepositoryImpl.signInUser(user);
     result.fold((error) {
       emit(LoginState.loadFailed(error));

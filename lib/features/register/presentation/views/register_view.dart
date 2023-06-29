@@ -4,12 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../config/app_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_styles.dart';
 import '../../../../utils/validators/login_validator.dart';
 import '../../../login/data/datasource/firebase_login.dart';
 import '../../../login/presentation/widgets/error_alert_dialog.dart';
 import '../../../login/presentation/widgets/login_text_field.dart';
 import '../cubit/register_cubit.dart';
 import '../widgets/register_button.dart';
+import '../widgets/login_option.dart';
 
 @RoutePage()
 class RegisterView extends StatefulWidget {
@@ -27,6 +29,15 @@ class _RegisterViewState extends State<RegisterView> {
   final _registerKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _nameController.dispose();
+    _surnameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final registerCubit = BlocProvider.of<RegisterCubit>(context);
 
@@ -34,12 +45,8 @@ class _RegisterViewState extends State<RegisterView> {
       body: ListView(
         children: [
           Container(
-            decoration: const BoxDecoration(
+            decoration: AppStyles.roundedOnlyBottomEdges.copyWith(
               color: AppColors.lightGrey,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50),
-              ),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -102,18 +109,7 @@ class _RegisterViewState extends State<RegisterView> {
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.02,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Already have an account?'),
-                      TextButton(
-                        onPressed: () {
-                          context.navigateTo(const LoginRoute());
-                        },
-                        child: const Text('Sign In'),
-                      )
-                    ],
-                  ),
+                  const LoginOption(),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.05,
                   ),
@@ -126,7 +122,6 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                     listener: (context, state) {
                       state.maybeWhen(
-                        // TODO: implement register error
                         registerFailed: (failure) => const ErrorAlertDialog(
                           error: LoginFailure.invalidCredentials,
                         ),
@@ -146,3 +141,4 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 }
+

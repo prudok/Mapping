@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mapping/core/constants/app_styles.dart';
 
-import '../../domain/entities/user/user.dart';
+import '../../../../core/constants/app_styles.dart';
+import '../../domain/entities/user/login_user.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -15,7 +15,7 @@ class LoginButton extends StatelessWidget {
         _passwordController = passwordController;
 
   final GlobalKey<FormState> _signInKey;
-  final Function(User) onPressed;
+  final Function(LoginUser) onPressed;
   final TextEditingController _emailController;
   final TextEditingController _passwordController;
 
@@ -32,9 +32,9 @@ class LoginButton extends StatelessWidget {
           style: AppStyles.widePurpleButtonStyle,
           onPressed: () {
             if (_signInKey.currentState!.validate()) {
-              onPressed(User(
-                email: _emailController.text,
-                password: _passwordController.text,
+              onPressed(LoginUser(
+                email: _emailController.text.trim(),
+                password: _passwordController.text.trim(),
               ));
             }
           },

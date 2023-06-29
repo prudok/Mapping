@@ -19,7 +19,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(User user) loading,
+    required TResult Function() loading,
     required TResult Function(LoginFailure loginFailure) loadFailed,
     required TResult Function() loaded,
   }) =>
@@ -27,7 +27,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(User user)? loading,
+    TResult? Function()? loading,
     TResult? Function(LoginFailure loginFailure)? loadFailed,
     TResult? Function()? loaded,
   }) =>
@@ -35,7 +35,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(User user)? loading,
+    TResult Function()? loading,
     TResult Function(LoginFailure loginFailure)? loadFailed,
     TResult Function()? loaded,
     required TResult orElse(),
@@ -124,7 +124,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(User user) loading,
+    required TResult Function() loading,
     required TResult Function(LoginFailure loginFailure) loadFailed,
     required TResult Function() loaded,
   }) {
@@ -135,7 +135,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(User user)? loading,
+    TResult? Function()? loading,
     TResult? Function(LoginFailure loginFailure)? loadFailed,
     TResult? Function()? loaded,
   }) {
@@ -146,7 +146,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(User user)? loading,
+    TResult Function()? loading,
     TResult Function(LoginFailure loginFailure)? loadFailed,
     TResult Function()? loaded,
     required TResult orElse(),
@@ -204,10 +204,6 @@ abstract class _$$_LoadingCopyWith<$Res> {
   factory _$$_LoadingCopyWith(
           _$_Loading value, $Res Function(_$_Loading) then) =
       __$$_LoadingCopyWithImpl<$Res>;
-  @useResult
-  $Res call({User user});
-
-  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -216,92 +212,60 @@ class __$$_LoadingCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$_Loading(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$_Loading implements _Loading {
-  const _$_Loading({required this.user});
-
-  @override
-  final User user;
+  const _$_Loading();
 
   @override
   String toString() {
-    return 'LoginState.loading(user: $user)';
+    return 'LoginState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Loading &&
-            (identical(other.user, user) || other.user == user));
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
-      __$$_LoadingCopyWithImpl<_$_Loading>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(User user) loading,
+    required TResult Function() loading,
     required TResult Function(LoginFailure loginFailure) loadFailed,
     required TResult Function() loaded,
   }) {
-    return loading(user);
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(User user)? loading,
+    TResult? Function()? loading,
     TResult? Function(LoginFailure loginFailure)? loadFailed,
     TResult? Function()? loaded,
   }) {
-    return loading?.call(user);
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(User user)? loading,
+    TResult Function()? loading,
     TResult Function(LoginFailure loginFailure)? loadFailed,
     TResult Function()? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(user);
+      return loading();
     }
     return orElse();
   }
@@ -345,12 +309,7 @@ class _$_Loading implements _Loading {
 }
 
 abstract class _Loading implements LoginState {
-  const factory _Loading({required final User user}) = _$_Loading;
-
-  User get user;
-  @JsonKey(ignore: true)
-  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
@@ -419,7 +378,7 @@ class _$_loadFailed implements _loadFailed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(User user) loading,
+    required TResult Function() loading,
     required TResult Function(LoginFailure loginFailure) loadFailed,
     required TResult Function() loaded,
   }) {
@@ -430,7 +389,7 @@ class _$_loadFailed implements _loadFailed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(User user)? loading,
+    TResult? Function()? loading,
     TResult? Function(LoginFailure loginFailure)? loadFailed,
     TResult? Function()? loaded,
   }) {
@@ -441,7 +400,7 @@ class _$_loadFailed implements _loadFailed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(User user)? loading,
+    TResult Function()? loading,
     TResult Function(LoginFailure loginFailure)? loadFailed,
     TResult Function()? loaded,
     required TResult orElse(),
@@ -536,7 +495,7 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(User user) loading,
+    required TResult Function() loading,
     required TResult Function(LoginFailure loginFailure) loadFailed,
     required TResult Function() loaded,
   }) {
@@ -547,7 +506,7 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(User user)? loading,
+    TResult? Function()? loading,
     TResult? Function(LoginFailure loginFailure)? loadFailed,
     TResult? Function()? loaded,
   }) {
@@ -558,7 +517,7 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(User user)? loading,
+    TResult Function()? loading,
     TResult Function(LoginFailure loginFailure)? loadFailed,
     TResult Function()? loaded,
     required TResult orElse(),

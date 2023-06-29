@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:mapping/features/login/data/datasource/firebase_login.dart';
-import 'package:mapping/features/login/data/datasource/firebase_login_impl.dart';
 
-import '../../domain/entities/user/user.dart';
+import '../../domain/entities/user/login_user.dart';
 import '../../domain/repository/login_repository.dart';
+import '../datasource/firebase_login.dart';
+import '../datasource/firebase_login_impl.dart';
 
 class LoginRepositoryImpl extends LoginRepository {
   final FirebaseLoginImpl firebaseLoginImpl;
@@ -12,7 +12,7 @@ class LoginRepositoryImpl extends LoginRepository {
 
 
   @override
-  Future<Either<LoginFailure, User>> signInUser(User user) async {
+  Future<Either<LoginFailure, LoginUser>> signInUser(LoginUser user) async {
     return firebaseLoginImpl.loadUser(user);
   }
 }
