@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../data/datasource/firebase_login.dart';
 
 class ErrorAlertDialog extends StatelessWidget {
@@ -14,11 +15,11 @@ class ErrorAlertDialog extends StatelessWidget {
     return AlertDialog(
       title: Text(
         isUndefinedError
-            ? 'Undefined Error Was occurred'
-            : 'Incorrect Password or Login.',
+            ? S.of(context).undefinedErrorWasOccurred
+            : S.of(context).incorrectPasswordOrLogin,
       ),
-      content: const Text(
-        'Please, try again.',
+      content: Text(
+        S.of(context).pleaseTryAgain,
       ),
       actions: [
         TextButton(
@@ -27,7 +28,7 @@ class ErrorAlertDialog extends StatelessWidget {
               Navigator.of(context).pop();
             }
           },
-          child: const Text('Ok'),
+          child: Text(S.of(context).ok),
         ),
       ],
     );

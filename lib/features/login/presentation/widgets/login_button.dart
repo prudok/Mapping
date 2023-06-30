@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_styles.dart';
+import '../../../../generated/l10n.dart';
 import '../../domain/entities/user/login_user.dart';
 
 class LoginButton extends StatelessWidget {
@@ -38,7 +39,7 @@ class LoginButton extends StatelessWidget {
               ));
             }
           },
-          child: const Text('Log In'),
+          child: Text(S.of(context).logIn),
         ),
       ),
     );

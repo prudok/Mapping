@@ -19,7 +19,7 @@ class Mapping extends StatelessWidget {
     final AppRouter appRouter = AppRouter();
     bool isloggedin = false;
 
-    firebaseInstance.authStateChanges().listen((User? user) {
+    firebaseAuthInstance.authStateChanges().listen((User? user) {
       if (user != null) {
         isloggedin = true;
       } else {
@@ -45,12 +45,15 @@ class Mapping extends StatelessWidget {
         ],
         supportedLocales: S.delegate.supportedLocales,
         debugShowCheckedModeBanner: false,
-        routerDelegate: AutoRouterDelegate.declarative(
-          appRouter,
-          routes: (_) => [
-            if (isloggedin) const HomeRoute() else const LoginRoute(),
-          ],
-        ),
+        routerConfig: appRouter.config(),
+        // TODO: uncomment when finish feature of registration
+        // routerDelegate: AutoRouterDelegate.declarative(
+        //   appRouter,
+        //   routes: (_) => [
+        //     const RegisterRoute()
+        //     // if (isloggedin) const HomeRoute() else const LoginRoute(),
+        //   ],
+        // ),
         // debugShowCheckedModeBanner: false,
         // routerConfig: appRouter.config(),
       ),

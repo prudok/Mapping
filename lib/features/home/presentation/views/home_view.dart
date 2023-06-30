@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../generated/l10n.dart';
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -62,16 +63,18 @@ class HomeView extends StatelessWidget {
                     ),
                     height: MediaQuery.sizeOf(context).height * 0.15,
                     width: MediaQuery.sizeOf(context).width * 0.9,
-                    child: const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
                       child: Column(
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Goal of the week'),
-                              Text('50km'),
+                              Text(S.of(context).goalOfTheWeek),
+                              const Text('50km'),
                             ],
                           ),
                         ],
@@ -118,10 +121,10 @@ class HomeView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('History'),
+                  Text(S.of(context).history),
                   TextButton(
                     onPressed: () {},
-                    child: const Text('All'),
+                    child: Text(S.of(context).all),
                   ),
                 ],
               ),

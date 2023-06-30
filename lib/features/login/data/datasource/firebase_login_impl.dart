@@ -9,7 +9,7 @@ class FirebaseLoginImpl extends FirebaseLogin {
   @override
   Future<Either<LoginFailure, LoginUser>> loadUser(LoginUser user) async {
     try {
-      final userCredential = await firebaseInstance.signInWithEmailAndPassword(
+      final userCredential = await firebaseAuthInstance.signInWithEmailAndPassword(
         email: user.email,
         password: user.password,
       );

@@ -10,7 +10,7 @@ class FirebaseRegisterImpl extends FirebaseRegister {
   Future<Either<RegisterFailure, User>> loadUser(User user) async {
     try {
       final userCredential =
-          await firebaseInstance.createUserWithEmailAndPassword(
+          await firebaseAuthInstance.createUserWithEmailAndPassword(
         email: user.email,
         password: user.password,
       );

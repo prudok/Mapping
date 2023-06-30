@@ -5,13 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/app_router.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_styles.dart';
-import '../../../../utils/validators/login_validator.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../utils/login_validator.dart';
 import '../../../login/data/datasource/firebase_login.dart';
 import '../../../login/presentation/widgets/error_alert_dialog.dart';
 import '../../../login/presentation/widgets/login_text_field.dart';
 import '../cubit/register_cubit.dart';
-import '../widgets/register_button.dart';
 import '../widgets/login_option.dart';
+import '../widgets/register_button.dart';
 
 @RoutePage()
 class RegisterView extends StatefulWidget {
@@ -60,36 +61,40 @@ class _RegisterViewState extends State<RegisterView> {
                       children: [
                         LoginTextField(
                           controller: _nameController,
-                          validator: LoginValidator.nameValidator,
+                          validator: (value) =>
+                              LoginValidator.nameValidator(context, value),
                           isEmailTextFormField: false,
-                          hintText: 'Name',
+                          hintText: S.of(context).name,
                         ),
                         SizedBox(
                           height: MediaQuery.sizeOf(context).height * 0.02,
                         ),
                         LoginTextField(
                           controller: _surnameController,
-                          validator: LoginValidator.surnameValidator,
+                          validator: (value) =>
+                              LoginValidator.surnameValidator(context, value),
                           isEmailTextFormField: false,
-                          hintText: 'Surname',
+                          hintText: S.of(context).surname,
                         ),
                         SizedBox(
                           height: MediaQuery.sizeOf(context).height * 0.02,
                         ),
                         LoginTextField(
                           controller: _emailController,
-                          validator: LoginValidator.emailValidator,
+                          validator: (value) =>
+                              LoginValidator.emailValidator(context, value),
                           isEmailTextFormField: true,
-                          hintText: 'Email',
+                          hintText: S.of(context).email,
                         ),
                         SizedBox(
                           height: MediaQuery.sizeOf(context).height * 0.02,
                         ),
                         LoginTextField(
                           controller: _passwordController,
-                          validator: LoginValidator.passwordValidator,
+                          validator: (value) =>
+                              LoginValidator.passwordValidator(context, value),
                           isEmailTextFormField: false,
-                          hintText: 'Password',
+                          hintText: S.of(context).password,
                           isObscureText: true,
                         ),
                       ],
@@ -141,4 +146,3 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 }
-

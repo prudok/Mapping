@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/app_router.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_styles.dart';
-import '../../../../utils/validators/login_validator.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../utils/login_validator.dart';
 import '../cubit/login_cubit.dart';
 import '../widgets/error_alert_dialog.dart';
 import '../widgets/login_button.dart';
@@ -55,18 +56,20 @@ class _LoginViewState extends State<LoginView> {
                       children: [
                         LoginTextField(
                           controller: _emailController,
-                          validator: LoginValidator.emailValidator,
+                          validator: (value) =>
+                              LoginValidator.emailValidator(context, value),
                           isEmailTextFormField: true,
-                          hintText: 'Email',
+                          hintText: S.of(context).email,
                         ),
                         SizedBox(
                           height: MediaQuery.sizeOf(context).height * 0.02,
                         ),
                         LoginTextField(
                           controller: _passwordController,
-                          validator: LoginValidator.passwordValidator,
+                          validator: (value) =>
+                              LoginValidator.passwordValidator(context, value),
                           isEmailTextFormField: false,
-                          hintText: 'Password',
+                          hintText: S.of(context).password,
                           isObscureText: true,
                         ),
                       ],
@@ -125,4 +128,3 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
-
