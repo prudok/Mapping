@@ -20,7 +20,7 @@ class LoginCubit extends Cubit<LoginState> {
     result.fold((error) {
       emit(LoginState.loadFailed(error));
     }, (success) {
-      emit(const LoginState.loaded());
+      emit(LoginState.loaded(loginUser: user));
     });
   }
 }

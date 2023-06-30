@@ -21,6 +21,7 @@ dependencies:
   dartz: ^0.10.1
   auto_route: ^7.4.0
   cloud_firestore: ^4.8.2
+  json_annotation: ^4.8.1
 
 dev_dependencies:
   freezed: ^2.3.5
@@ -29,6 +30,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   auto_route_generator: ^7.1.1
   build_runner: ^2.4.3
+  json_serializable: ^6.7.0
 
 flutter:
   uses-material-design: true

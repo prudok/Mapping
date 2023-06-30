@@ -111,7 +111,7 @@ class _LoginViewState extends State<LoginView> {
                               },
                             );
                           },
-                          loaded: () {
+                          loaded: (_) {
                             context.router.navigate(const HomeRoute());
                           },
                           orElse: () {},
