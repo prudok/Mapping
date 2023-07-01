@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../data/datasource/firebase_register.dart';
 import '../../data/repository/register_repository_impl.dart';
 import '../entities/user_registration_info.dart';
 import 'user_registration.dart';
 
+@injectable
 class UserRegistrationImpl extends UserRegistration {
   final RegisterRepositoryImpl registerRepositoryImpl;
 

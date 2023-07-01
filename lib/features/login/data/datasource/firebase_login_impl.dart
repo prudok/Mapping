@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../utils/firebase_instance.dart';
 import '../../domain/entities/user/login_user.dart';
 import 'firebase_login.dart';
 
+@injectable
 class FirebaseLoginImpl extends FirebaseLogin {
   @override
   Future<Either<LoginFailure, LoginUser>> loadUser(LoginUser user) async {

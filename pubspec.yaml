@@ -22,6 +22,8 @@ dependencies:
   auto_route: ^7.4.0
   cloud_firestore: ^4.8.2
   json_annotation: ^4.8.1
+  injectable: ^2.1.2
+  injectable_generator: ^2.1.6
 
 dev_dependencies:
   freezed: ^2.3.5

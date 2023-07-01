@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'app.dart';
 import 'firebase_options.dart';
-import 'service_locator.dart';
+import 'config/injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,7 +11,7 @@ void main() async {
     name: "dev project",
     options: DefaultFirebaseOptions.ios,
   );
-  await setup();
+  await configureDependencies();
 
   runApp(const Mapping());
 }

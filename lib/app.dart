@@ -8,7 +8,7 @@ import 'config/app_router.dart';
 import 'features/login/presentation/cubit/login_cubit.dart';
 import 'features/register/presentation/cubit/register_cubit.dart';
 import 'generated/l10n.dart';
-import 'service_locator.dart';
+import 'config/injection.dart';
 import 'utils/firebase_instance.dart';
 
 class Mapping extends StatelessWidget {
@@ -30,10 +30,10 @@ class Mapping extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => sl<LoginCubit>(),
+          create: (_) => getIt<LoginCubit>(),
         ),
         BlocProvider(
-          create: (_) => sl<RegisterCubit>(),
+          create: (_) => getIt<RegisterCubit>(),
         ),
       ],
       child: MaterialApp.router(

@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../domain/entities/user/login_user.dart';
 import '../../domain/repository/login_repository.dart';
 import '../datasource/firebase_login.dart';
 import '../datasource/firebase_login_impl.dart';
 
+@singleton
 class LoginRepositoryImpl extends LoginRepository {
   final FirebaseLoginImpl firebaseLoginImpl;
 
