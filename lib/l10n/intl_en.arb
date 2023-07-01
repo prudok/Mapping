@@ -1,0 +1,22 @@
+{
+  "email": "Email",
+  "password": "Password",
+  "logIn": "Log In",
+  "notRegisteredYet": "Not Registered Yet?",
+  "register": "Register",
+  "undefinedErrorWasOccurred": "Undefined Error Was occurred",
+  "incorrectPasswordOrLogin": "Incorrect Password or Login.",
+  "pleaseTryAgain": "Please, try again.",
+  "ok": "Ok",
+  "name": "Name",
+  "surname": "Surname",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "signIn": "Sign In",
+  "goalOfTheWeek": "Goal of the week",
+  "history": "History",
+  "all": "All",
+  "enterCorrectEmail": "Enter correct email.",
+  "enterCorrectPassword": "Enter correct password.",
+  "enterCorrectName": "Enter correct name.",
+  "enterCorrectSurname": "Enter correct surname."
+}

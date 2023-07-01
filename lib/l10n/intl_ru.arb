@@ -1,0 +1,22 @@
+{
+  "email": "Почта",
+  "password": "Пароль",
+  "logIn": "Войти",
+  "notRegisteredYet": "Еще не зарегистрированы?",
+  "register": "Зарегистрироваться",
+  "undefinedErrorWasOccurred": "Произошла неизвестная ошибка",
+  "incorrectPasswordOrLogin": "Неправильный пароль или логин.",
+  "pleaseTryAgain": "Пожалуйста, попробуйте снова.",
+  "ok": "Хорошо",
+  "name": "Имя",
+  "surname": "Фамилия",
+  "alreadyHaveAnAccount": "Уже есть аккаунт?",
+  "signIn": "Войти",
+  "goalOfTheWeek": "Цель недели",
+  "history": "История",
+  "all": "Все",
+  "enterCorrectEmail": "Введите корректую почту.",
+  "enterCorrectPassword": "Введите корректный пароль.",
+  "enterCorrectName": "Введите корректное имя.",
+  "enterCorrectSurname": "Введите корректную фамилию."
+}
