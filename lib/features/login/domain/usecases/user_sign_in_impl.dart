@@ -1,16 +1,17 @@
 import 'package:dartz/dartz.dart';
 
 import '../../data/datasource/firebase_login.dart';
+import '../../data/repository/login_repository_impl.dart';
 import '../entities/user/login_user.dart';
-import '../repository/login_repository.dart';
 import 'user_sign_in.dart';
 
 class UserSignInImpl extends UserSignIn {
-  UserSignInImpl(this.loginRepository);
-  final LoginRepository loginRepository;
+  final LoginRepositoryImpl loginRepositoryImpl;
+
+  UserSignInImpl({required this.loginRepositoryImpl});
 
   @override
   Future<Either<LoginFailure, LoginUser>> call(LoginUser user) async {
-    return await loginRepository.signInUser(user);
+    return await loginRepositoryImpl.signInUser(user);
   }
 }

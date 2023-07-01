@@ -4,25 +4,25 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../utils/extensions.dart';
 import '../../../../utils/firebase_instance.dart';
 import '../../data/datasource/firebase_register.dart';
-import '../../domain/entities/user.dart';
-import '../../domain/usecases/user_registration.dart';
+import '../../domain/entities/user_registration_info.dart';
+import '../../domain/usecases/user_registration_impl.dart';
 
 part 'register_cubit.freezed.dart';
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  final UserRegistration userRegistration;
+  final UserRegistrationImpl userRegistrationImpl;
 
-  RegisterCubit({required this.userRegistration})
+  RegisterCubit({required this.userRegistrationImpl})
       : super(const RegisterState.initial());
 
-  void registerUser(User user) async {
+  void registerUser(UserRegInfo user) async {
     emit(const RegisterState.registering());
-    final result = await userRegistration.call(user);
+    final result = await userRegistrationImpl.call(user);
     result.fold((error) {
       emit(RegisterState.registerFailed(failure: error));
     }, (success) {
-      firebaseFireStoreInstance.addUserDetails(user);
+      fbFireStore.addUserDetails(user);
       emit(const RegisterState.registered());
     });
   }

@@ -2,15 +2,15 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuthException;
 
 import '../../../../utils/firebase_instance.dart';
-import '../../domain/entities/user.dart';
+import '../../domain/entities/user_registration_info.dart';
 import 'firebase_register.dart';
 
 class FirebaseRegisterImpl extends FirebaseRegister {
   @override
-  Future<Either<RegisterFailure, User>> loadUser(User user) async {
+  Future<Either<RegisterFailure, UserRegInfo>> loadUser(UserRegInfo user) async{
     try {
       final userCredential =
-          await firebaseAuthInstance.createUserWithEmailAndPassword(
+          await fbAuth.createUserWithEmailAndPassword(
         email: user.email,
         password: user.password,
       );

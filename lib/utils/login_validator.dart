@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../generated/l10n.dart';
 
-class LoginValidator {
+class FormValidator {
   static String? emailValidator(BuildContext context, String? value) {
     if (value != null && value.isNotEmpty && value.contains('@')) {
       return null;

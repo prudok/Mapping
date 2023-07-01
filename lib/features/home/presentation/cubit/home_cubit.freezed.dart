@@ -20,21 +20,21 @@ mixin _$HomeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loaded,
+    required TResult Function(UserRegInfo user) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loaded,
+    TResult? Function(UserRegInfo user)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loaded,
+    TResult Function(UserRegInfo user)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,7 +118,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loaded,
+    required TResult Function(UserRegInfo user) loaded,
   }) {
     return initial();
   }
@@ -128,7 +128,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loaded,
+    TResult? Function(UserRegInfo user)? loaded,
   }) {
     return initial?.call();
   }
@@ -138,7 +138,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loaded,
+    TResult Function(UserRegInfo user)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -225,7 +225,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loaded,
+    required TResult Function(UserRegInfo user) loaded,
   }) {
     return loading();
   }
@@ -235,7 +235,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loaded,
+    TResult? Function(UserRegInfo user)? loaded,
   }) {
     return loading?.call();
   }
@@ -245,7 +245,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loaded,
+    TResult Function(UserRegInfo user)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -298,9 +298,9 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({User user});
+  $Res call({UserRegInfo user});
 
-  $UserCopyWith<$Res> get user;
+  $UserRegInfoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -319,14 +319,14 @@ class __$$_LoadedCopyWithImpl<$Res>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
+              as UserRegInfo,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
+  $UserRegInfoCopyWith<$Res> get user {
+    return $UserRegInfoCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -338,7 +338,7 @@ class _$_Loaded implements _Loaded {
   const _$_Loaded({required this.user});
 
   @override
-  final User user;
+  final UserRegInfo user;
 
   @override
   String toString() {
@@ -367,7 +367,7 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loaded,
+    required TResult Function(UserRegInfo user) loaded,
   }) {
     return loaded(user);
   }
@@ -377,7 +377,7 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loaded,
+    TResult? Function(UserRegInfo user)? loaded,
   }) {
     return loaded?.call(user);
   }
@@ -387,7 +387,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loaded,
+    TResult Function(UserRegInfo user)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -432,9 +432,9 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements HomeState {
-  const factory _Loaded({required final User user}) = _$_Loaded;
+  const factory _Loaded({required final UserRegInfo user}) = _$_Loaded;
 
-  User get user;
+  UserRegInfo get user;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

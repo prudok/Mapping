@@ -62,7 +62,7 @@ class _RegisterViewState extends State<RegisterView> {
                         LoginTextField(
                           controller: _nameController,
                           validator: (value) =>
-                              LoginValidator.nameValidator(context, value),
+                              FormValidator.nameValidator(context, value),
                           isEmailTextFormField: false,
                           hintText: S.of(context).name,
                         ),
@@ -72,7 +72,7 @@ class _RegisterViewState extends State<RegisterView> {
                         LoginTextField(
                           controller: _surnameController,
                           validator: (value) =>
-                              LoginValidator.surnameValidator(context, value),
+                              FormValidator.surnameValidator(context, value),
                           isEmailTextFormField: false,
                           hintText: S.of(context).surname,
                         ),
@@ -82,7 +82,7 @@ class _RegisterViewState extends State<RegisterView> {
                         LoginTextField(
                           controller: _emailController,
                           validator: (value) =>
-                              LoginValidator.emailValidator(context, value),
+                              FormValidator.emailValidator(context, value),
                           isEmailTextFormField: true,
                           hintText: S.of(context).email,
                         ),
@@ -92,7 +92,7 @@ class _RegisterViewState extends State<RegisterView> {
                         LoginTextField(
                           controller: _passwordController,
                           validator: (value) =>
-                              LoginValidator.passwordValidator(context, value),
+                              FormValidator.passwordValidator(context, value),
                           isEmailTextFormField: false,
                           hintText: S.of(context).password,
                           isObscureText: true,

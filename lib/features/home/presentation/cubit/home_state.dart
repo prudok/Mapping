@@ -6,5 +6,6 @@ class HomeState with _$HomeState {
 
   const factory HomeState.loading() = _Loading;
 
-  const factory HomeState.loaded({required User user}) = _Loaded;
+  // TODO: implement the User entity
+  const factory HomeState.loaded({required UserRegInfo user}) = _Loaded;
 }

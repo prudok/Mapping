@@ -57,7 +57,7 @@ class _LoginViewState extends State<LoginView> {
                         LoginTextField(
                           controller: _emailController,
                           validator: (value) =>
-                              LoginValidator.emailValidator(context, value),
+                              FormValidator.emailValidator(context, value),
                           isEmailTextFormField: true,
                           hintText: S.of(context).email,
                         ),
@@ -67,7 +67,7 @@ class _LoginViewState extends State<LoginView> {
                         LoginTextField(
                           controller: _passwordController,
                           validator: (value) =>
-                              LoginValidator.passwordValidator(context, value),
+                              FormValidator.passwordValidator(context, value),
                           isEmailTextFormField: false,
                           hintText: S.of(context).password,
                           isObscureText: true,

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user.dart';
+part of 'user_registration_info.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
+UserRegInfo _$UserRegInfoFromJson(Map<String, dynamic> json) {
+  return _UserRegInfo.fromJson(json);
 }
 
 /// @nodoc
-mixin _$User {
+mixin _$UserRegInfo {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -27,21 +27,23 @@ mixin _$User {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $UserRegInfoCopyWith<UserRegInfo> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
+abstract class $UserRegInfoCopyWith<$Res> {
+  factory $UserRegInfoCopyWith(
+          UserRegInfo value, $Res Function(UserRegInfo) then) =
+      _$UserRegInfoCopyWithImpl<$Res, UserRegInfo>;
   @useResult
   $Res call({String email, String password, String name, String surName});
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$UserRegInfoCopyWithImpl<$Res, $Val extends UserRegInfo>
+    implements $UserRegInfoCopyWith<$Res> {
+  _$UserRegInfoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -78,18 +80,22 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
 }
 
 /// @nodoc
-abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
-      __$$_UserCopyWithImpl<$Res>;
+abstract class _$$_UserRegInfoCopyWith<$Res>
+    implements $UserRegInfoCopyWith<$Res> {
+  factory _$$_UserRegInfoCopyWith(
+          _$_UserRegInfo value, $Res Function(_$_UserRegInfo) then) =
+      __$$_UserRegInfoCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String email, String password, String name, String surName});
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
-    implements _$$_UserCopyWith<$Res> {
-  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+class __$$_UserRegInfoCopyWithImpl<$Res>
+    extends _$UserRegInfoCopyWithImpl<$Res, _$_UserRegInfo>
+    implements _$$_UserRegInfoCopyWith<$Res> {
+  __$$_UserRegInfoCopyWithImpl(
+      _$_UserRegInfo _value, $Res Function(_$_UserRegInfo) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -100,7 +106,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? name = null,
     Object? surName = null,
   }) {
-    return _then(_$_User(
+    return _then(_$_UserRegInfo(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -122,16 +128,16 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
-class _$_User with DiagnosticableTreeMixin implements _User {
-  const _$_User(
+@JsonSerializable()
+class _$_UserRegInfo with DiagnosticableTreeMixin implements _UserRegInfo {
+  const _$_UserRegInfo(
       {required this.email,
       required this.password,
       required this.name,
       required this.surName});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+  factory _$_UserRegInfo.fromJson(Map<String, dynamic> json) =>
+      _$$_UserRegInfoFromJson(json);
 
   @override
   final String email;
@@ -144,14 +150,14 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(email: $email, password: $password, name: $name, surName: $surName)';
+    return 'UserRegInfo(email: $email, password: $password, name: $name, surName: $surName)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'User'))
+      ..add(DiagnosticsProperty('type', 'UserRegInfo'))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('password', password))
       ..add(DiagnosticsProperty('name', name))
@@ -162,7 +168,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_User &&
+            other is _$_UserRegInfo &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
@@ -177,25 +183,26 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserCopyWith<_$_User> get copyWith =>
-      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+  _$$_UserRegInfoCopyWith<_$_UserRegInfo> get copyWith =>
+      __$$_UserRegInfoCopyWithImpl<_$_UserRegInfo>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToJson(
+    return _$$_UserRegInfoToJson(
       this,
     );
   }
 }
 
-abstract class _User implements User {
-  const factory _User(
+abstract class _UserRegInfo implements UserRegInfo {
+  const factory _UserRegInfo(
       {required final String email,
       required final String password,
       required final String name,
-      required final String surName}) = _$_User;
+      required final String surName}) = _$_UserRegInfo;
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory _UserRegInfo.fromJson(Map<String, dynamic> json) =
+      _$_UserRegInfo.fromJson;
 
   @override
   String get email;
@@ -207,5 +214,6 @@ abstract class _User implements User {
   String get surName;
   @override
   @JsonKey(ignore: true)
-  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
+  _$$_UserRegInfoCopyWith<_$_UserRegInfo> get copyWith =>
+      throw _privateConstructorUsedError;
 }
