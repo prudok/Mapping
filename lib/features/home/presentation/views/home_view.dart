@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mapping/features/home/presentation/bloc/home_bloc.dart';
 
 import '../../../../core/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../bottom_navigation/bottom_navigation.dart';
-import '../../../login/presentation/cubit/login_cubit.dart';
-import '../cubit/home_cubit.dart';
+import '../../../login/presentation/bloc/login_bloc.dart';
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -14,8 +14,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeCubit = BlocProvider.of<HomeCubit>(context);
-    final loginCubit = BlocProvider.of<LoginCubit>(context);
+    final homeBloc = BlocProvider.of<HomeBloc>(context);
+    final loginCubit = BlocProvider.of<LoginBloc>(context);
 
     return Scaffold(
       backgroundColor: AppColors.lightGrey,
@@ -24,14 +24,16 @@ class HomeView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.logout_outlined),
         onPressed: () {
-          homeCubit.signOut();
+          homeBloc.add(const HomeEvent.signOut());
         },
       ),
-      body: BlocListener<LoginCubit, LoginState>(
+      body: BlocListener<LoginBloc, LoginState>(
         bloc: loginCubit,
         listener: (context, state) {
           state.maybeWhen(
-            logIn: (user) => homeCubit.loadUserDetails(user.email!),
+            logIn: (user) => homeBloc.add(
+              HomeEvent.loadUserDetails(user.email!),
+            ),
             orElse: () {},
           );
         },
@@ -39,8 +41,8 @@ class HomeView extends StatelessWidget {
           headerSliverBuilder: (context, bool innerBoxIsScrolled) => [
             const HomeSliverAppBar(),
           ],
-          body: BlocBuilder<HomeCubit, HomeState>(
-            bloc: homeCubit,
+          body: BlocBuilder<HomeBloc, HomeState>(
+            bloc: homeBloc,
             builder: (context, state) {
               return state.maybeWhen(
                 loaded: (userInfo) => const HomeListView(),
@@ -62,7 +64,6 @@ class HomeSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeCubit = BlocProvider.of<HomeCubit>(context);
 
     return SliverAppBar(
       backgroundColor: AppColors.purple,
@@ -71,7 +72,7 @@ class HomeSliverAppBar extends StatelessWidget {
         icon: const Icon(Icons.access_time),
         onPressed: () {},
       ),
-      title: BlocBuilder<HomeCubit, HomeState>(
+      title: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           return state.maybeWhen(
             loaded: (user) => Column(

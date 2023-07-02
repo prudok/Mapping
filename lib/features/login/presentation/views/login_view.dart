@@ -7,9 +7,9 @@ import '../../../../core/app_colors.dart';
 import '../../../../core/app_styles.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/login_validator.dart';
-import '../cubit/login_cubit.dart';
+import '../../domain/entities/user/login_user.dart';
+import '../bloc/login_bloc.dart';
 import '../widgets/error_alert_dialog.dart';
-import '../widgets/login_button.dart';
 import '../widgets/login_text_field.dart';
 import '../widgets/register_option.dart';
 
@@ -35,7 +35,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    final loginCubit = BlocProvider.of<LoginCubit>(context);
+    final loginBloc = BlocProvider.of<LoginBloc>(context);
 
     return Scaffold(
       body: ListView(
@@ -78,11 +78,26 @@ class _LoginViewState extends State<LoginView> {
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.05,
                   ),
-                  LoginButton(
-                    signInKey: _signInKey,
-                    emailController: _emailController,
-                    passwordController: _passwordController,
-                    onPressed: loginCubit.signInUser,
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxHeight: 50,
+                      minWidth: 100,
+                      maxWidth: 400,
+                    ),
+                    child: SizedBox.expand(
+                      child: ElevatedButton(
+                        style: AppStyles.widePurpleButtonStyle,
+                        onPressed: () {
+                          if (_signInKey.currentState!.validate()) {
+                            loginBloc.add(LoginEvent.signIn(LoginUser(
+                              email: _emailController.text.trim(),
+                              password: _passwordController.text.trim(),
+                            )));
+                          }
+                        },
+                        child: Text(S.of(context).logIn),
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.02,
@@ -90,7 +105,7 @@ class _LoginViewState extends State<LoginView> {
                   const RegisterOption(),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.05,
-                    child: BlocConsumer<LoginCubit, LoginState>(
+                    child: BlocConsumer<LoginBloc, LoginState>(
                       builder: (context, state) {
                         return state.maybeWhen(
                           loading: () {
