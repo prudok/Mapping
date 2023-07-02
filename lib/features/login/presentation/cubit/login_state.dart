@@ -8,5 +8,7 @@ class LoginState with _$LoginState {
 
   const factory LoginState.loadFailed(LoginFailure loginFailure) = _loadFailed;
 
-  const factory LoginState.loaded({required LoginUser loginUser}) = _Loaded;
+  const factory LoginState.logIn({required User user}) = _LogIn;
+
+  const factory LoginState.logOut() = _LogOut;
 }

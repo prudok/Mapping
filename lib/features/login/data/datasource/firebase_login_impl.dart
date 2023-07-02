@@ -9,14 +9,14 @@ import 'firebase_login.dart';
 @injectable
 class FirebaseLoginImpl extends FirebaseLogin {
   @override
-  Future<Either<LoginFailure, LoginUser>> loadUser(LoginUser user) async {
+  Future<Either<LoginFailure, User>> loadUser(LoginUser user) async {
     try {
       final userCredential = await fbAuth.signInWithEmailAndPassword(
         email: user.email,
         password: user.password,
       );
       if (userCredential.user != null) {
-        return Right(user);
+        return Right(userCredential.user!);
       } else {
         return const Left(LoginFailure.invalidCredentials);
       }

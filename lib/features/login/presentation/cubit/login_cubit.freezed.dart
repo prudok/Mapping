@@ -21,7 +21,8 @@ mixin _$LoginState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginFailure loginFailure) loadFailed,
-    required TResult Function(LoginUser loginUser) loaded,
+    required TResult Function(User user) logIn,
+    required TResult Function() logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +30,8 @@ mixin _$LoginState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(LoginFailure loginFailure)? loadFailed,
-    TResult? Function(LoginUser loginUser)? loaded,
+    TResult? Function(User user)? logIn,
+    TResult? Function()? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +39,8 @@ mixin _$LoginState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginFailure loginFailure)? loadFailed,
-    TResult Function(LoginUser loginUser)? loaded,
+    TResult Function(User user)? logIn,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -46,7 +49,8 @@ mixin _$LoginState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_loadFailed value) loadFailed,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LogIn value) logIn,
+    required TResult Function(_LogOut value) logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +58,8 @@ mixin _$LoginState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_loadFailed value)? loadFailed,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LogIn value)? logIn,
+    TResult? Function(_LogOut value)? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +67,8 @@ mixin _$LoginState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_loadFailed value)? loadFailed,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LogIn value)? logIn,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +132,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginFailure loginFailure) loadFailed,
-    required TResult Function(LoginUser loginUser) loaded,
+    required TResult Function(User user) logIn,
+    required TResult Function() logOut,
   }) {
     return initial();
   }
@@ -137,7 +144,8 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(LoginFailure loginFailure)? loadFailed,
-    TResult? Function(LoginUser loginUser)? loaded,
+    TResult? Function(User user)? logIn,
+    TResult? Function()? logOut,
   }) {
     return initial?.call();
   }
@@ -148,7 +156,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginFailure loginFailure)? loadFailed,
-    TResult Function(LoginUser loginUser)? loaded,
+    TResult Function(User user)? logIn,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -163,7 +172,8 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_loadFailed value) loadFailed,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LogIn value) logIn,
+    required TResult Function(_LogOut value) logOut,
   }) {
     return initial(this);
   }
@@ -174,7 +184,8 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_loadFailed value)? loadFailed,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LogIn value)? logIn,
+    TResult? Function(_LogOut value)? logOut,
   }) {
     return initial?.call(this);
   }
@@ -185,7 +196,8 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_loadFailed value)? loadFailed,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LogIn value)? logIn,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -239,7 +251,8 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginFailure loginFailure) loadFailed,
-    required TResult Function(LoginUser loginUser) loaded,
+    required TResult Function(User user) logIn,
+    required TResult Function() logOut,
   }) {
     return loading();
   }
@@ -250,7 +263,8 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(LoginFailure loginFailure)? loadFailed,
-    TResult? Function(LoginUser loginUser)? loaded,
+    TResult? Function(User user)? logIn,
+    TResult? Function()? logOut,
   }) {
     return loading?.call();
   }
@@ -261,7 +275,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginFailure loginFailure)? loadFailed,
-    TResult Function(LoginUser loginUser)? loaded,
+    TResult Function(User user)? logIn,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -276,7 +291,8 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_loadFailed value) loadFailed,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LogIn value) logIn,
+    required TResult Function(_LogOut value) logOut,
   }) {
     return loading(this);
   }
@@ -287,7 +303,8 @@ class _$_Loading implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_loadFailed value)? loadFailed,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LogIn value)? logIn,
+    TResult? Function(_LogOut value)? logOut,
   }) {
     return loading?.call(this);
   }
@@ -298,7 +315,8 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_loadFailed value)? loadFailed,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LogIn value)? logIn,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -380,7 +398,8 @@ class _$_loadFailed implements _loadFailed {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginFailure loginFailure) loadFailed,
-    required TResult Function(LoginUser loginUser) loaded,
+    required TResult Function(User user) logIn,
+    required TResult Function() logOut,
   }) {
     return loadFailed(loginFailure);
   }
@@ -391,7 +410,8 @@ class _$_loadFailed implements _loadFailed {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(LoginFailure loginFailure)? loadFailed,
-    TResult? Function(LoginUser loginUser)? loaded,
+    TResult? Function(User user)? logIn,
+    TResult? Function()? logOut,
   }) {
     return loadFailed?.call(loginFailure);
   }
@@ -402,7 +422,8 @@ class _$_loadFailed implements _loadFailed {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginFailure loginFailure)? loadFailed,
-    TResult Function(LoginUser loginUser)? loaded,
+    TResult Function(User user)? logIn,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (loadFailed != null) {
@@ -417,7 +438,8 @@ class _$_loadFailed implements _loadFailed {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_loadFailed value) loadFailed,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LogIn value) logIn,
+    required TResult Function(_LogOut value) logOut,
   }) {
     return loadFailed(this);
   }
@@ -428,7 +450,8 @@ class _$_loadFailed implements _loadFailed {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_loadFailed value)? loadFailed,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LogIn value)? logIn,
+    TResult? Function(_LogOut value)? logOut,
   }) {
     return loadFailed?.call(this);
   }
@@ -439,7 +462,8 @@ class _$_loadFailed implements _loadFailed {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_loadFailed value)? loadFailed,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LogIn value)? logIn,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (loadFailed != null) {
@@ -459,74 +483,63 @@ abstract class _loadFailed implements LoginState {
 }
 
 /// @nodoc
-abstract class _$$_LoadedCopyWith<$Res> {
-  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
-      __$$_LoadedCopyWithImpl<$Res>;
+abstract class _$$_LogInCopyWith<$Res> {
+  factory _$$_LogInCopyWith(_$_LogIn value, $Res Function(_$_LogIn) then) =
+      __$$_LogInCopyWithImpl<$Res>;
   @useResult
-  $Res call({LoginUser loginUser});
-
-  $LoginUserCopyWith<$Res> get loginUser;
+  $Res call({User user});
 }
 
 /// @nodoc
-class __$$_LoadedCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$_Loaded>
-    implements _$$_LoadedCopyWith<$Res> {
-  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
+class __$$_LogInCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res, _$_LogIn>
+    implements _$$_LogInCopyWith<$Res> {
+  __$$_LogInCopyWithImpl(_$_LogIn _value, $Res Function(_$_LogIn) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? loginUser = null,
+    Object? user = null,
   }) {
-    return _then(_$_Loaded(
-      loginUser: null == loginUser
-          ? _value.loginUser
-          : loginUser // ignore: cast_nullable_to_non_nullable
-              as LoginUser,
+    return _then(_$_LogIn(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LoginUserCopyWith<$Res> get loginUser {
-    return $LoginUserCopyWith<$Res>(_value.loginUser, (value) {
-      return _then(_value.copyWith(loginUser: value));
-    });
   }
 }
 
 /// @nodoc
 
-class _$_Loaded implements _Loaded {
-  const _$_Loaded({required this.loginUser});
+class _$_LogIn implements _LogIn {
+  const _$_LogIn({required this.user});
 
   @override
-  final LoginUser loginUser;
+  final User user;
 
   @override
   String toString() {
-    return 'LoginState.loaded(loginUser: $loginUser)';
+    return 'LoginState.logIn(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Loaded &&
-            (identical(other.loginUser, loginUser) ||
-                other.loginUser == loginUser));
+            other is _$_LogIn &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loginUser);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
-      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
+  _$$_LogInCopyWith<_$_LogIn> get copyWith =>
+      __$$_LogInCopyWithImpl<_$_LogIn>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -534,9 +547,10 @@ class _$_Loaded implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginFailure loginFailure) loadFailed,
-    required TResult Function(LoginUser loginUser) loaded,
+    required TResult Function(User user) logIn,
+    required TResult Function() logOut,
   }) {
-    return loaded(loginUser);
+    return logIn(user);
   }
 
   @override
@@ -545,9 +559,10 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(LoginFailure loginFailure)? loadFailed,
-    TResult? Function(LoginUser loginUser)? loaded,
+    TResult? Function(User user)? logIn,
+    TResult? Function()? logOut,
   }) {
-    return loaded?.call(loginUser);
+    return logIn?.call(user);
   }
 
   @override
@@ -556,11 +571,12 @@ class _$_Loaded implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginFailure loginFailure)? loadFailed,
-    TResult Function(LoginUser loginUser)? loaded,
+    TResult Function(User user)? logIn,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(loginUser);
+    if (logIn != null) {
+      return logIn(user);
     }
     return orElse();
   }
@@ -571,9 +587,10 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_loadFailed value) loadFailed,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LogIn value) logIn,
+    required TResult Function(_LogOut value) logOut,
   }) {
-    return loaded(this);
+    return logIn(this);
   }
 
   @override
@@ -582,9 +599,10 @@ class _$_Loaded implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_loadFailed value)? loadFailed,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LogIn value)? logIn,
+    TResult? Function(_LogOut value)? logOut,
   }) {
-    return loaded?.call(this);
+    return logIn?.call(this);
   }
 
   @override
@@ -593,21 +611,140 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_loadFailed value)? loadFailed,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LogIn value)? logIn,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (logIn != null) {
+      return logIn(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loaded implements LoginState {
-  const factory _Loaded({required final LoginUser loginUser}) = _$_Loaded;
+abstract class _LogIn implements LoginState {
+  const factory _LogIn({required final User user}) = _$_LogIn;
 
-  LoginUser get loginUser;
+  User get user;
   @JsonKey(ignore: true)
-  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+  _$$_LogInCopyWith<_$_LogIn> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LogOutCopyWith<$Res> {
+  factory _$$_LogOutCopyWith(_$_LogOut value, $Res Function(_$_LogOut) then) =
+      __$$_LogOutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LogOutCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res, _$_LogOut>
+    implements _$$_LogOutCopyWith<$Res> {
+  __$$_LogOutCopyWithImpl(_$_LogOut _value, $Res Function(_$_LogOut) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_LogOut implements _LogOut {
+  const _$_LogOut();
+
+  @override
+  String toString() {
+    return 'LoginState.logOut()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_LogOut);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(LoginFailure loginFailure) loadFailed,
+    required TResult Function(User user) logIn,
+    required TResult Function() logOut,
+  }) {
+    return logOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(LoginFailure loginFailure)? loadFailed,
+    TResult? Function(User user)? logIn,
+    TResult? Function()? logOut,
+  }) {
+    return logOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(LoginFailure loginFailure)? loadFailed,
+    TResult Function(User user)? logIn,
+    TResult Function()? logOut,
+    required TResult orElse(),
+  }) {
+    if (logOut != null) {
+      return logOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_loadFailed value) loadFailed,
+    required TResult Function(_LogIn value) logIn,
+    required TResult Function(_LogOut value) logOut,
+  }) {
+    return logOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_loadFailed value)? loadFailed,
+    TResult? Function(_LogIn value)? logIn,
+    TResult? Function(_LogOut value)? logOut,
+  }) {
+    return logOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_loadFailed value)? loadFailed,
+    TResult Function(_LogIn value)? logIn,
+    TResult Function(_LogOut value)? logOut,
+    required TResult orElse(),
+  }) {
+    if (logOut != null) {
+      return logOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LogOut implements LoginState {
+  const factory _LogOut() = _$_LogOut;
 }
