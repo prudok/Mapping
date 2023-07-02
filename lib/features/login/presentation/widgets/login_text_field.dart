@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/app_colors.dart';
 import 'login_form_field.dart';
 
 class LoginTextField extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/app_styles.dart';
+import '../../../../core/app_styles.dart';
 import '../../../../generated/l10n.dart';
 import '../../domain/entities/user/login_user.dart';
 

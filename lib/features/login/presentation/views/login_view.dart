@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../config/app_router.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_styles.dart';
+import '../../../../core/app_colors.dart';
+import '../../../../core/app_styles.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/login_validator.dart';
 import '../cubit/login_cubit.dart';

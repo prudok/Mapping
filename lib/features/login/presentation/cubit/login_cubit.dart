@@ -21,7 +21,9 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit(this._userSignInImpl) : super(const LoginState.initial()) {
     _userSub = fbAuth.authStateChanges().listen((User? user) {
-      user == null ? const LoginState.logOut() : LoginState.logIn(user: user);
+      emit(
+        user == null ? const LoginState.logOut() : LoginState.logIn(user: user),
+      );
     });
   }
 

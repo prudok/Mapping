@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mapping/features/home/presentation/cubit/home_cubit.dart';
 import 'package:mapping/utils/firebase_instance.dart';
 
 import 'config/app_router.dart';
@@ -22,12 +24,12 @@ class Mapping extends StatefulWidget {
 
 class _MappingState extends State<Mapping> {
   late StreamSubscription<User?> _userSub;
-  bool isLoggedIn = false;
+  late bool isLoggedIn = false;
 
   @override
   void didChangeDependencies() {
     _userSub = fbAuth.authStateChanges().listen((User? user) {
-      if (user != null) isLoggedIn = true;
+      isLoggedIn = user != null ? true : false;
     });
     super.didChangeDependencies();
   }
@@ -40,10 +42,15 @@ class _MappingState extends State<Mapping> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+    );
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => getIt<LoginCubit>()),
         BlocProvider(create: (_) => getIt<RegisterCubit>()),
+        BlocProvider(create: (_) => getIt<HomeCubit>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
@@ -56,6 +63,7 @@ class _MappingState extends State<Mapping> {
         supportedLocales: S.delegate.supportedLocales,
         routerDelegate: AutoRouterDelegate.declarative(
           getIt<AppRouter>(),
+          // TODO: change routes below to router.config()
           routes: (_) => [
             if (isLoggedIn) const HomeRoute() else const LoginRoute(),
           ],

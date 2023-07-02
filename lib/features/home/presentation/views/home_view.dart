@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/app_colors.dart';
 import '../../../../generated/l10n.dart';
+import '../../../bottom_navigation/bottom_navigation.dart';
+import '../../../login/presentation/cubit/login_cubit.dart';
+import '../cubit/home_cubit.dart';
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -10,361 +14,228 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeCubit = BlocProvider.of<HomeCubit>(context);
+    final loginCubit = BlocProvider.of<LoginCubit>(context);
+
     return Scaffold(
       backgroundColor: AppColors.lightGrey,
       bottomNavigationBar: const HomeBottomNavigationBar(),
       extendBody: true,
-      body: NestedScrollView(
-        headerSliverBuilder: (context, bool innerBoxIsScrolled) => [
-          SliverAppBar(
-            backgroundColor: AppColors.purple,
-            elevation: 0,
-            leading: IconButton(
-              icon: const Icon(Icons.access_time),
-              onPressed: () {},
-            ),
-            title: const Column(
-              children: [
-                Text('Template'),
-                Text('Template'),
-              ],
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.settings),
-                onPressed: () {},
-              )
-            ],
-          ),
-        ],
-        body: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: MediaQuery.sizeOf(context).height * 0.2,
-                  width: MediaQuery.sizeOf(context).width,
-                  decoration: const BoxDecoration(
-                    color: AppColors.purple,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: MediaQuery.sizeOf(context).height * 0.03,
-                  right: MediaQuery.sizeOf(context).width * 0.05,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.white,
-                    ),
-                    height: MediaQuery.sizeOf(context).height * 0.15,
-                    width: MediaQuery.sizeOf(context).width * 0.9,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 10,
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(S.of(context).goalOfTheWeek),
-                              const Text('50km'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: AppColors.white,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.run_circle),
-                    ),
-                    const Column(
-                      children: [
-                        Text('Some text'),
-                        Text('Some text'),
-                      ],
-                    ),
-                    const Column(
-                      children: [
-                        Text('19'),
-                        Text('km'),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(S.of(context).history),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(S.of(context).all),
-                  ),
-                ],
-              ),
-            ),
-            ListView.separated(
-              padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: AppColors.white,
-                  ),
-                  child: const ListTile(
-                    leading: Icon(Icons.map),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Some Text'),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text('Some Text'),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Some Text'),
-                            Text('Some Text'),
-                          ],
-                        ),
-                      ],
-                    ),
-                    trailing: Icon(Icons.arrow_right_alt),
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const SizedBox(height: 10);
-              },
-            ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.logout_outlined),
+        onPressed: () {
+          homeCubit.signOut();
+        },
+      ),
+      body: BlocListener<LoginCubit, LoginState>(
+        bloc: loginCubit,
+        listener: (context, state) {
+          state.maybeWhen(
+            logIn: (user) => homeCubit.loadUserDetails(user.email!),
+            orElse: () {},
+          );
+        },
+        child: NestedScrollView(
+          headerSliverBuilder: (context, bool innerBoxIsScrolled) => [
+            const HomeSliverAppBar(),
           ],
+          body: BlocBuilder<HomeCubit, HomeState>(
+            bloc: homeCubit,
+            builder: (context, state) {
+              return state.maybeWhen(
+                loaded: (userInfo) => const HomeListView(),
+                // TODO: implement shimmer view
+                orElse: () => const Center(child: CircularProgressIndicator()),
+              );
+            },
+          ),
         ),
-        // NestedScrollView(
-        //   headerSliverBuilder: (context, bool innerBoxIsScrolled) => [
-        //     SliverAppBar(
-        //       backgroundColor: AppColors.purple,
-        //       elevation: 0,
-        //       leading: IconButton(
-        //         icon: const Icon(Icons.access_time),
-        //         onPressed: () {},
-        //       ),
-        //       title: const Column(
-        //         children: [
-        //           Text('Template'),
-        //           Text('Template'),
-        //         ],
-        //       ),
-        //       actions: [
-        //         IconButton(
-        //           icon: const Icon(Icons.settings),
-        //           onPressed: () {},
-        //         )
-        //       ],
-        //     ),
-        //   ],
-        //   body: ListView(
-        //     children: [
-        //       Stack(
-        //         children: [
-        //           Container(
-        //             height: MediaQuery.sizeOf(context).height * 0.2,
-        //             width: MediaQuery.sizeOf(context).width,
-        //             decoration: const BoxDecoration(
-        //               color: AppColors.purple,
-        //               borderRadius: BorderRadius.only(
-        //                 bottomLeft: Radius.circular(20),
-        //                 bottomRight: Radius.circular(20),
-        //               ),
-        //             ),
-        //           ),
-        //           Positioned(
-        //             top: MediaQuery.sizeOf(context).height * 0.03,
-        //             right: MediaQuery.sizeOf(context).width * 0.05,
-        //             child: Container(
-        //               decoration: BoxDecoration(
-        //                 borderRadius: BorderRadius.circular(20),
-        //                 color: AppColors.white,
-        //               ),
-        //               height: MediaQuery.sizeOf(context).height * 0.15,
-        //               width: MediaQuery.sizeOf(context).width * 0.9,
-        //               child: const Padding(
-        //                 padding:
-        //                     EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        //                 child: Column(
-        //                   children: [
-        //                     Row(
-        //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //                       children: [
-        //                         Text('Goal of the week'),
-        //                         Text('50km'),
-        //                       ],
-        //                     ),
-        //                   ],
-        //                 ),
-        //               ),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //       SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
-        //       Padding(
-        //         padding: const EdgeInsets.symmetric(horizontal: 20),
-        //         child: Container(
-        //           decoration: BoxDecoration(
-        //             borderRadius: BorderRadius.circular(20),
-        //             color: AppColors.white,
-        //           ),
-        //           child: Row(
-        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //             children: [
-        //               IconButton(
-        //                 onPressed: () {},
-        //                 icon: const Icon(Icons.run_circle),
-        //               ),
-        //               const Column(
-        //                 children: [
-        //                   Text('Some text'),
-        //                   Text('Some text'),
-        //                 ],
-        //               ),
-        //               const Column(
-        //                 children: [
-        //                   Text('19'),
-        //                   Text('km'),
-        //                 ],
-        //               ),
-        //             ],
-        //           ),
-        //         ),
-        //       ),
-        //       SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
-        //       Container(
-        //         padding: const EdgeInsets.symmetric(horizontal: 20),
-        //         child: Row(
-        //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //           children: [
-        //             const Text('History'),
-        //             TextButton(
-        //               onPressed: () {},
-        //               child: const Text('All'),
-        //             ),
-        //           ],
-        //         ),
-        //       ),
-        //       ListView.separated(
-        //         padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-        //         physics: const NeverScrollableScrollPhysics(),
-        //         shrinkWrap: true,
-        //         itemCount: 5,
-        //         itemBuilder: (BuildContext context, int index) {
-        //           return Container(
-        //             decoration: BoxDecoration(
-        //               borderRadius: BorderRadius.circular(20),
-        //               color: AppColors.white,
-        //             ),
-        //             child: const ListTile(
-        //               leading: Icon(Icons.map),
-        //               title: Column(
-        //                 crossAxisAlignment: CrossAxisAlignment.start,
-        //                 children: [
-        //                   Text('Some Text'),
-        //                   SizedBox(
-        //                     height: 10,
-        //                   ),
-        //                   Text('Some Text'),
-        //                   SizedBox(
-        //                     height: 10,
-        //                   ),
-        //                   Row(
-        //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //                     children: [
-        //                       Text('Some Text'),
-        //                       Text('Some Text'),
-        //                     ],
-        //                   ),
-        //                 ],
-        //               ),
-        //               trailing: Icon(Icons.arrow_right_alt),
-        //             ),
-        //           );
-        //         },
-        //         separatorBuilder: (BuildContext context, int index) {
-        //           return const SizedBox(height: 10);
-        //         },
-        //       ),
-        //     ],
-        //   ),
       ),
     );
   }
 }
 
-class HomeBottomNavigationBar extends StatelessWidget {
-  const HomeBottomNavigationBar({
+class HomeSliverAppBar extends StatelessWidget {
+  const HomeSliverAppBar({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 20,
-        left: 20,
-        right: 20,
+    final homeCubit = BlocProvider.of<HomeCubit>(context);
+
+    return SliverAppBar(
+      backgroundColor: AppColors.purple,
+      elevation: 0,
+      leading: IconButton(
+        icon: const Icon(Icons.access_time),
+        onPressed: () {},
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: BottomNavigationBar(
-          backgroundColor: const Color(0x00ffffff),
-          unselectedItemColor: AppColors.lightGrey,
-          selectedItemColor: AppColors.black,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.menu_rounded), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.area_chart_rounded), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.mail_rounded), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.people_rounded), label: 'Home'),
+      title: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            loaded: (user) => Column(
+              children: [
+                Text(user.name),
+                Text(user.surName),
+              ],
+            ),
+            // TODO: implement shimmer view
+            orElse: () => const SizedBox(),
+          );
+        },
+      ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.settings),
+          onPressed: () {},
+        )
+      ],
+    );
+  }
+}
+
+class HomeListView extends StatelessWidget {
+  const HomeListView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.zero,
+      children: [
+        Stack(
+          children: [
+            Container(
+              height: MediaQuery.sizeOf(context).height * 0.2,
+              width: MediaQuery.sizeOf(context).width,
+              decoration: const BoxDecoration(
+                color: AppColors.purple,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.sizeOf(context).height * 0.03,
+              right: MediaQuery.sizeOf(context).width * 0.05,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: AppColors.white,
+                ),
+                height: MediaQuery.sizeOf(context).height * 0.15,
+                width: MediaQuery.sizeOf(context).width * 0.9,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(S.of(context).goalOfTheWeek),
+                          const Text('50km'),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-      ),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: AppColors.white,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.run_circle),
+                ),
+                const Column(
+                  children: [
+                    Text('Some text'),
+                    Text('Some text'),
+                  ],
+                ),
+                const Column(
+                  children: [
+                    Text('19'),
+                    Text('km'),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(S.of(context).history),
+              TextButton(
+                onPressed: () {},
+                child: Text(S.of(context).all),
+              ),
+            ],
+          ),
+        ),
+        ListView.separated(
+          padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: AppColors.white,
+              ),
+              child: const ListTile(
+                leading: Icon(Icons.map),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Some Text'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('Some Text'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Some Text'),
+                        Text('Some Text'),
+                      ],
+                    ),
+                  ],
+                ),
+                trailing: Icon(Icons.arrow_right_alt),
+              ),
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return const SizedBox(height: 10);
+          },
+        ),
+      ],
     );
   }
 }
