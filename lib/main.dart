@@ -9,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     name: "dev project",
-    options: DefaultFirebaseOptions.ios,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
   await configureDependencies();
 

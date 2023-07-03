@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mapping/features/home/presentation/bloc/home_bloc.dart';
 
 import '../../../../core/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../bottom_navigation/bottom_navigation.dart';
 import '../../../login/presentation/bloc/login_bloc.dart';
+import '../bloc/home_bloc.dart';
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeBloc = BlocProvider.of<HomeBloc>(context);
-    final loginCubit = BlocProvider.of<LoginBloc>(context);
+    final loginBloc = BlocProvider.of<LoginBloc>(context);
 
     return Scaffold(
       backgroundColor: AppColors.lightGrey,
@@ -28,7 +28,6 @@ class HomeView extends StatelessWidget {
         },
       ),
       body: BlocListener<LoginBloc, LoginState>(
-        bloc: loginCubit,
         listener: (context, state) {
           state.maybeWhen(
             logIn: (user) => homeBloc.add(
@@ -64,7 +63,6 @@ class HomeSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SliverAppBar(
       backgroundColor: AppColors.purple,
       elevation: 0,
