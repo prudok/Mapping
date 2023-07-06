@@ -10,7 +10,7 @@ import 'config/app_router.dart';
 import 'config/injection.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
-import 'features/register/presentation/cubit/register_cubit.dart';
+import 'features/register/presentation/bloc/register_bloc.dart';
 import 'generated/l10n.dart';
 import 'utils/firebase_instance.dart';
 
@@ -48,7 +48,7 @@ class _MappingState extends State<Mapping> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => getIt<LoginBloc>()),
-        BlocProvider(create: (_) => getIt<RegisterCubit>()),
+        BlocProvider(create: (_) => getIt<RegisterBloc>()),
         BlocProvider(create: (_) => getIt<HomeBloc>()),
       ],
       child: MaterialApp.router(

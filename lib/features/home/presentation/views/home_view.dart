@@ -5,17 +5,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../bottom_navigation/bottom_navigation.dart';
-import '../../../login/presentation/bloc/login_bloc.dart';
 import '../bloc/home_bloc.dart';
 
 @RoutePage()
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  final String userEmail;
+
+  const HomeView({super.key, required this.userEmail});
 
   @override
   Widget build(BuildContext context) {
     final homeBloc = BlocProvider.of<HomeBloc>(context);
-    final loginBloc = BlocProvider.of<LoginBloc>(context);
 
     return Scaffold(
       backgroundColor: AppColors.lightGrey,
@@ -27,12 +27,10 @@ class HomeView extends StatelessWidget {
           homeBloc.add(const HomeEvent.signOut());
         },
       ),
-      body: BlocListener<LoginBloc, LoginState>(
+      body: BlocListener<HomeBloc, HomeState>(
         listener: (context, state) {
           state.maybeWhen(
-            logIn: (user) => homeBloc.add(
-              HomeEvent.loadUserDetails(user.email!),
-            ),
+            initial: () => homeBloc.add(HomeEvent.loadUserDetails(userEmail)),
             orElse: () {},
           );
         },
@@ -43,10 +41,12 @@ class HomeView extends StatelessWidget {
           body: BlocBuilder<HomeBloc, HomeState>(
             bloc: homeBloc,
             builder: (context, state) {
-              return state.maybeWhen(
+              return state.when(
                 loaded: (userInfo) => const HomeListView(),
+                initial: () => const Text('Initial'),
+                loading: (_) => const Text('loading'),
+                loadingFailed: () => const Text('Loading Failed'),
                 // TODO: implement shimmer view
-                orElse: () => const Center(child: CircularProgressIndicator()),
               );
             },
           ),

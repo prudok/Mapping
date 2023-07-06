@@ -10,9 +10,9 @@ import '../../../../utils/login_validator.dart';
 import '../../../login/data/datasource/firebase_login.dart';
 import '../../../login/presentation/widgets/error_alert_dialog.dart';
 import '../../../login/presentation/widgets/login_text_field.dart';
-import '../cubit/register_cubit.dart';
+import '../../domain/entities/user_registration_info.dart';
+import '../bloc/register_bloc.dart';
 import '../widgets/login_option.dart';
-import '../widgets/register_button.dart';
 
 @RoutePage()
 class RegisterView extends StatefulWidget {
@@ -40,7 +40,7 @@ class _RegisterViewState extends State<RegisterView> {
 
   @override
   Widget build(BuildContext context) {
-    final registerCubit = BlocProvider.of<RegisterCubit>(context);
+    final registerBloc = BlocProvider.of<RegisterBloc>(context);
 
     return Scaffold(
       body: ListView(
@@ -103,13 +103,32 @@ class _RegisterViewState extends State<RegisterView> {
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.05,
                   ),
-                  RegisterButton(
-                    registerKey: _registerKey,
-                    nameController: _nameController,
-                    surnameController: _surnameController,
-                    emailController: _emailController,
-                    passwordController: _passwordController,
-                    onPressed: registerCubit.registerUser,
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxHeight: 50,
+                      minWidth: 100,
+                      maxWidth: 400,
+                    ),
+                    child: SizedBox.expand(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_registerKey.currentState!.validate()) {
+                            registerBloc.add(
+                              RegisterEvent.registerUser(
+                                userRegInfo: UserRegInfo(
+                                  name: _nameController.text.trim(),
+                                  surName: _surnameController.text.trim(),
+                                  email: _emailController.text.trim(),
+                                  password: _passwordController.text.trim(),
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        style: AppStyles.widePurpleButtonStyle,
+                        child: Text(S.of(context).register),
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.02,
@@ -118,7 +137,7 @@ class _RegisterViewState extends State<RegisterView> {
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.05,
                   ),
-                  BlocConsumer<RegisterCubit, RegisterState>(
+                  BlocConsumer<RegisterBloc, RegisterState>(
                     builder: (context, state) {
                       return state.maybeWhen(
                         registering: () => const CircularProgressIndicator(),
@@ -131,7 +150,10 @@ class _RegisterViewState extends State<RegisterView> {
                           error: LoginFailure.invalidCredentials,
                         ),
                         registered: () {
-                          context.router.navigate(const HomeRoute());
+                          // TODO: set required email parameter into registered state
+                          context.router.navigate(HomeRoute(
+                            userEmail: _emailController.text.trim(),
+                          ));
                         },
                         orElse: () {},
                       );

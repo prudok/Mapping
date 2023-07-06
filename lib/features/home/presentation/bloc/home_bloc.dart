@@ -14,11 +14,16 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState.initial()) {
     on<LoadUserDetails>((event, emit) async {
-      emit(const HomeState.loading());
-      await fbFireStore.getUserDetails(event.email).then(
-            (userDetails) => emit(HomeState.loaded(user: userDetails)),
-          );
-    });
+      emit(HomeState.loading(email: event.email));
+      try {
+        await fbFireStore
+            .getUserDetails(event.email)
+            .then((userDetails) => emit(HomeState.loaded(user: userDetails)));
+      } catch (_) {
+        emit(const HomeState.loadingFailed());
+      }
+    },);
+
     on<SignOut>((event, emit) async {
       await fbAuth.signOut();
     });
