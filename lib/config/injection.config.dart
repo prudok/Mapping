@@ -23,7 +23,7 @@ import '../features/register/data/repository/register_repository_impl.dart'
     as _i8;
 import '../features/register/domain/usecases/user_registration_impl.dart'
     as _i9;
-import '../features/register/presentation/cubit/register_cubit.dart' as _i12;
+import '../features/register/presentation/bloc/register_bloc.dart' as _i12;
 import 'app_router.dart' as _i3;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -50,8 +50,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i10.UserSignInImpl>(() => _i10.UserSignInImpl(
         loginRepositoryImpl: gh<_i7.LoginRepositoryImpl>()));
     gh.factory<_i11.LoginBloc>(() => _i11.LoginBloc(gh<_i10.UserSignInImpl>()));
-    gh.factory<_i12.RegisterCubit>(() => _i12.RegisterCubit(
-        userRegistrationImpl: gh<_i9.UserRegistrationImpl>()));
+    gh.factory<_i12.RegisterBloc>(
+        () => _i12.RegisterBloc(gh<_i9.UserRegistrationImpl>()));
     return this;
   }
 }

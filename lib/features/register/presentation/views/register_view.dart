@@ -123,6 +123,9 @@ class _RegisterViewState extends State<RegisterView> {
                                 ),
                               ),
                             );
+                            context.navigateTo(HomeRoute(
+                              userEmail: _emailController.text.trim(),
+                            ));
                           }
                         },
                         style: AppStyles.widePurpleButtonStyle,

@@ -8,15 +8,33 @@ import '../../../bottom_navigation/bottom_navigation.dart';
 import '../bloc/home_bloc.dart';
 
 @RoutePage()
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   final String userEmail;
 
   const HomeView({super.key, required this.userEmail});
 
   @override
-  Widget build(BuildContext context) {
-    final homeBloc = BlocProvider.of<HomeBloc>(context);
+  State<HomeView> createState() => _HomeViewState();
+}
 
+class _HomeViewState extends State<HomeView> {
+  late HomeBloc homeBloc;
+
+  @override
+  void initState() {
+    homeBloc = BlocProvider.of<HomeBloc>(context);
+    homeBloc.add(HomeEvent.loadUserDetails(widget.userEmail));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    homeBloc.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.lightGrey,
       bottomNavigationBar: const HomeBottomNavigationBar(),
@@ -30,7 +48,8 @@ class HomeView extends StatelessWidget {
       body: BlocListener<HomeBloc, HomeState>(
         listener: (context, state) {
           state.maybeWhen(
-            initial: () => homeBloc.add(HomeEvent.loadUserDetails(userEmail)),
+            initial: () =>
+                homeBloc.add(HomeEvent.loadUserDetails(widget.userEmail)),
             orElse: () {},
           );
         },
