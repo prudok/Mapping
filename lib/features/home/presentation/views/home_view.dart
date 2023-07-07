@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/app_colors.dart';
 import '../../../../generated/l10n.dart';
-import '../../../bottom_navigation/bottom_navigation.dart';
 import '../bloc/home_bloc.dart';
 
 @RoutePage()
@@ -37,7 +36,6 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.lightGrey,
-      bottomNavigationBar: const HomeBottomNavigationBar(),
       extendBody: true,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.logout_outlined),
@@ -61,11 +59,11 @@ class _HomeViewState extends State<HomeView> {
             bloc: homeBloc,
             builder: (context, state) {
               return state.when(
+                // TODO: implement shimmer view
                 loaded: (userInfo) => const HomeListView(),
                 initial: () => const Text('Initial'),
                 loading: (_) => const Text('loading'),
                 loadingFailed: () => const Text('Loading Failed'),
-                // TODO: implement shimmer view
               );
             },
           ),
