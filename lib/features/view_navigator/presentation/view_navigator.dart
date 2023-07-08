@@ -17,8 +17,8 @@ class ViewNavigator extends StatelessWidget {
       routes: [
         const ProfileRoute(),
         HomeRoute(userEmail: fbAuth.currentUser!.email),
-        const ProfileRoute(),
         const SettingsRoute(),
+        const ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return Padding(

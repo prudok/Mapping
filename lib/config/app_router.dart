@@ -59,7 +59,7 @@ class UserSignInChecker extends AutoRouteGuard {
     if (fbAuth.currentUser != null) {
       resolver.next(true);
     } else {
-      router.pushNamed('/${LoginRoute.name}');
+      router.replaceNamed('/${LoginRoute.name}');
     }
   }
 }

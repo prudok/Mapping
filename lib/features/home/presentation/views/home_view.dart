@@ -207,7 +207,7 @@ class HomeListView extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: 5,
+          itemCount: 3,
           itemBuilder: (BuildContext context, int index) {
             return Container(
               decoration: BoxDecoration(
