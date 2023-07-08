@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_styles.dart';
+import '../../../core/asset_paths.dart';
 
 @RoutePage()
 class ProfileView extends StatelessWidget {
@@ -17,7 +18,7 @@ class ProfileView extends StatelessWidget {
         title: const Text('Profile'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
+            icon: Image.asset(AssetPaths.settingsIcon),
             onPressed: () {},
           ),
         ],
@@ -138,12 +139,18 @@ class ProfileView extends StatelessWidget {
                   color: AppColors.white,
                 ),
                 child: Padding(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  child: Column(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 5,
+                  ),
+                  child: ListView(
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
                       ListTile(
-                        leading: const Icon(Icons.settings),
+                        leading: Image.asset(
+                          AssetPaths.settingsIcon,
+                          color: AppColors.black,
+                        ),
                         title: const Text('Settings'),
                         trailing: IconButton(
                           onPressed: () {},

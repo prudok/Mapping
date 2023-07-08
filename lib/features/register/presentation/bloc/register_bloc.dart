@@ -27,11 +27,13 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         (error) {
           emit(RegisterState.registerFailed(failure: error));
         },
-        (success) async {
-          await fbFireStore.addUserDetails(event.userRegInfo);
+        (success) {
           fbAuth.signInWithEmailAndPassword(
             email: event.userRegInfo.email,
             password: event.userRegInfo.password,
+          );
+          fbFireStore.addUserDetails(
+            event.userRegInfo,
           );
           emit(RegisterState.registered(userRegInfo: event.userRegInfo));
         },
