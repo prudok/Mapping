@@ -8,7 +8,7 @@ import '../bloc/home_bloc.dart';
 
 @RoutePage()
 class HomeView extends StatefulWidget {
-  final String userEmail;
+  final String? userEmail;
 
   const HomeView({super.key, required this.userEmail});
 
@@ -22,7 +22,9 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     homeBloc = BlocProvider.of<HomeBloc>(context);
-    homeBloc.add(HomeEvent.loadUserDetails(widget.userEmail));
+    if (widget.userEmail != null) {
+      homeBloc.add(HomeEvent.loadUserDetails(widget.userEmail!));
+    }
     super.initState();
   }
 
@@ -43,30 +45,21 @@ class _HomeViewState extends State<HomeView> {
           homeBloc.add(const HomeEvent.signOut());
         },
       ),
-      body: BlocListener<HomeBloc, HomeState>(
-        listener: (context, state) {
-          state.maybeWhen(
-            initial: () =>
-                homeBloc.add(HomeEvent.loadUserDetails(widget.userEmail)),
-            orElse: () {},
-          );
-        },
-        child: NestedScrollView(
-          headerSliverBuilder: (context, bool innerBoxIsScrolled) => [
-            const HomeSliverAppBar(),
-          ],
-          body: BlocBuilder<HomeBloc, HomeState>(
-            bloc: homeBloc,
-            builder: (context, state) {
-              return state.when(
-                // TODO: implement shimmer view
-                loaded: (userInfo) => const HomeListView(),
-                initial: () => const Text('Initial'),
-                loading: (_) => const Text('loading'),
-                loadingFailed: () => const Text('Loading Failed'),
-              );
-            },
-          ),
+      body: NestedScrollView(
+        headerSliverBuilder: (context, bool innerBoxIsScrolled) => [
+          const HomeSliverAppBar(),
+        ],
+        body: BlocBuilder<HomeBloc, HomeState>(
+          bloc: homeBloc,
+          builder: (context, state) {
+            return state.when(
+              // TODO: implement shimmer view
+              loaded: (userInfo) => const HomeListView(),
+              initial: () => const Text('Initial'),
+              loading: (_) => const Text('loading'),
+              loadingFailed: () => const Text('Loading Failed'),
+            );
+          },
         ),
       ),
     );

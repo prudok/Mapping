@@ -123,9 +123,6 @@ class _RegisterViewState extends State<RegisterView> {
                                 ),
                               ),
                             );
-                            context.navigateTo(HomeRoute(
-                              userEmail: _emailController.text.trim(),
-                            ));
                           }
                         },
                         style: AppStyles.widePurpleButtonStyle,
@@ -152,10 +149,9 @@ class _RegisterViewState extends State<RegisterView> {
                         registerFailed: (failure) => const ErrorAlertDialog(
                           error: LoginFailure.invalidCredentials,
                         ),
-                        registered: () {
-                          // TODO: set required email parameter into registered state
+                        registered: (userRegInfo) {
                           context.router.navigate(HomeRoute(
-                            userEmail: _emailController.text.trim(),
+                            userEmail: userRegInfo.email,
                           ));
                         },
                         orElse: () {},

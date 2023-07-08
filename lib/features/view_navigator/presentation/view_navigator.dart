@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:mapping/utils/firebase_instance.dart';
 
 import '../../../config/app_router.dart';
 import '../../../core/app_colors.dart';
@@ -8,12 +9,14 @@ import '../../../core/app_colors.dart';
 class ViewNavigator extends StatelessWidget {
   const ViewNavigator({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
+      extendBody: true,
       routes: [
-        const LoginRoute(),
-        HomeRoute(userEmail: ''),
+        const ProfileRoute(),
+        HomeRoute(userEmail: fbAuth.currentUser!.email),
         const ProfileRoute(),
         const SettingsRoute(),
       ],

@@ -9,7 +9,9 @@ import '../../domain/entities/user_registration_info.dart';
 import '../../domain/usecases/user_registration_impl.dart';
 
 part 'register_bloc.freezed.dart';
+
 part 'register_event.dart';
+
 part 'register_state.dart';
 
 @injectable
@@ -25,10 +27,13 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         (error) {
           emit(RegisterState.registerFailed(failure: error));
         },
-        (success) {
-          // TODO: implement fbFireStore as GetIt component
-          fbFireStore.addUserDetails(event.userRegInfo);
-          emit(const RegisterState.registered());
+        (success) async {
+          await fbFireStore.addUserDetails(event.userRegInfo);
+          fbAuth.signInWithEmailAndPassword(
+            email: event.userRegInfo.email,
+            password: event.userRegInfo.password,
+          );
+          emit(RegisterState.registered(userRegInfo: event.userRegInfo));
         },
       );
     });

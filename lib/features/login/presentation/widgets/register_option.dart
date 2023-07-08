@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:mapping/config/app_router.dart';
 
-import '../../../../config/app_router.dart';
 import '../../../../generated/l10n.dart';
 
 class RegisterOption extends StatelessWidget {
@@ -17,7 +17,7 @@ class RegisterOption extends StatelessWidget {
         Text(S.of(context).notRegisteredYet),
         TextButton(
           onPressed: () {
-            context.navigateTo(const RegisterRoute());
+            context.router.replaceNamed('/${RegisterRoute.name}');
           },
           child: Text(S.of(context).register),
         )

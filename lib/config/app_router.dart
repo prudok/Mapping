@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mapping/utils/firebase_instance.dart';
 
 import '../features/home/presentation/views/home_view.dart';
 import '../features/login/presentation/views/login_view.dart';
@@ -14,16 +15,25 @@ part 'app_router.gr.dart';
 @singleton
 @AutoRouterConfig(replaceInRouteName: 'View,Route')
 class AppRouter extends _$AppRouter {
+  final UserSignInChecker userSignInChecker;
+
+  AppRouter(this.userSignInChecker);
+
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-          path: "/",
+          path: '/${LoginRoute.name}',
+          page: LoginRoute.page,
+        ),
+        AutoRoute(
+          path: '/${RegisterRoute.name}',
+          page: RegisterRoute.page,
+        ),
+        AutoRoute(
+          path: '/',
+          guards: [userSignInChecker],
           page: RouteNavigator.page,
           children: [
-            AutoRoute(
-              path: LoginRoute.name,
-              page: LoginRoute.page,
-            ),
             AutoRoute(
               path: HomeRoute.name,
               page: HomeRoute.page,
@@ -39,4 +49,17 @@ class AppRouter extends _$AppRouter {
           ],
         ),
       ];
+}
+
+// Guard Routes
+@injectable
+class UserSignInChecker extends AutoRouteGuard {
+  @override
+  void onNavigation(resolver, router) async {
+    if (fbAuth.currentUser != null) {
+      resolver.next(true);
+    } else {
+      router.pushNamed('/${LoginRoute.name}');
+    }
+  }
 }
