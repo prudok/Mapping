@@ -4,6 +4,16 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
+/// Default [FirebaseOptions] for use with your Firebase apps.
+///
+/// Example:
+/// ```dart
+/// import 'firebase_options.dart';
+/// // ...
+/// await Firebase.initializeApp(
+///   options: DefaultFirebaseOptions.currentPlatform,
+/// );
+/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -18,10 +28,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -55,5 +62,15 @@ class DefaultFirebaseOptions {
     storageBucket: 'mapping-bc664.appspot.com',
     iosClientId: '791599398715-kc7biii7dkmk82l829k6fu889lncpbri.apps.googleusercontent.com',
     iosBundleId: 'com.example.mapping',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAyF4yo5M3KYrAZP27akbFT0RvY1Q3pqe4',
+    appId: '1:791599398715:ios:174a176e9dfa6c381d811e',
+    messagingSenderId: '791599398715',
+    projectId: 'mapping-bc664',
+    storageBucket: 'mapping-bc664.appspot.com',
+    iosClientId: '791599398715-5ce8mfff5atetak3u3ooc1on73112tc2.apps.googleusercontent.com',
+    iosBundleId: 'com.example.mapping.RunnerTests',
   );
 }

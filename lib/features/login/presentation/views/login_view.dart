@@ -2,16 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapping/config/app_router.dart';
-
-import '../../../../core/app_colors.dart';
-import '../../../../core/app_styles.dart';
-import '../../../../generated/l10n.dart';
-import '../../../../utils/login_validator.dart';
-import '../../domain/entities/user/login_user.dart';
-import '../bloc/login_bloc.dart';
-import '../widgets/error_alert_dialog.dart';
-import '../widgets/login_text_field.dart';
-import '../widgets/register_option.dart';
+import 'package:mapping/core/app_colors.dart';
+import 'package:mapping/core/app_styles.dart';
+import 'package:mapping/features/login/domain/entities/user/login_user.dart';
+import 'package:mapping/features/login/presentation/bloc/login_bloc.dart';
+import 'package:mapping/features/login/presentation/widgets/error_alert_dialog.dart';
+import 'package:mapping/features/login/presentation/widgets/login_text_field.dart';
+import 'package:mapping/features/login/presentation/widgets/register_option.dart';
+import 'package:mapping/generated/l10n.dart';
+import 'package:mapping/utils/login_validator.dart';
 
 @RoutePage()
 class LoginView extends StatefulWidget {
@@ -89,10 +88,14 @@ class _LoginViewState extends State<LoginView> {
                         style: AppStyles.widePurpleButtonStyle,
                         onPressed: () {
                           if (_signInKey.currentState!.validate()) {
-                            loginBloc.add(LoginEvent.signIn(LoginUser(
-                              email: _emailController.text.trim(),
-                              password: _passwordController.text.trim(),
-                            )));
+                            loginBloc.add(
+                              LoginEvent.signIn(
+                                LoginUser(
+                                  email: _emailController.text.trim(),
+                                  password: _passwordController.text.trim(),
+                                ),
+                              ),
+                            );
                           }
                         },
                         child: Text(S.of(context).logIn),
@@ -119,12 +122,12 @@ class _LoginViewState extends State<LoginView> {
                       listener: (context, state) {
                         state.maybeWhen(
                           loadFailed: (failure) {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return ErrorAlertDialog(error: failure);
-                              },
-                            );
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return ErrorAlertDialog(error: failure);
+                                },
+                              );
                           },
                           logIn: (loginUserData) {
                             context.router.navigate(

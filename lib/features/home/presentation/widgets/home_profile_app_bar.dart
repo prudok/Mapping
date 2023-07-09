@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/app_colors.dart';
+import 'package:mapping/core/app_colors.dart';
 
 class HomeProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeProfileAppBar({

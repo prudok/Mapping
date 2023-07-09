@@ -1,17 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mapping/core/app_colors.dart';
 import 'package:mapping/core/asset_paths.dart';
-
-import '../../../../core/app_colors.dart';
-import '../../../../generated/l10n.dart';
-import '../bloc/home_bloc.dart';
+import 'package:mapping/features/home/presentation/bloc/home_bloc.dart';
+import 'package:mapping/generated/l10n.dart';
 
 @RoutePage()
 class HomeView extends StatefulWidget {
-  final String? userEmail;
+  const HomeView({required this.userEmail, super.key});
 
-  const HomeView({super.key, required this.userEmail});
+  final String? userEmail;
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -54,7 +53,6 @@ class _HomeViewState extends State<HomeView> {
           bloc: homeBloc,
           builder: (context, state) {
             return state.when(
-              // TODO: implement shimmer view
               loaded: (userInfo) => const HomeListView(),
               initial: () => const Center(child: Text('Initial')),
               loading: (_) => const Center(child: Text('loading')),
@@ -90,7 +88,6 @@ class HomeSliverAppBar extends StatelessWidget {
                 Text(user.surName),
               ],
             ),
-            // TODO: implement shimmer view
             orElse: () => const SizedBox(),
           );
         },

@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
-
-import '../../domain/entities/user_registration_info.dart';
+import 'package:mapping/features/register/domain/entities/user_registration_info.dart';
 
 enum RegisterFailure { invalidCredentials, error }
 

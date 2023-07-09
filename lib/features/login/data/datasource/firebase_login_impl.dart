@@ -1,10 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../utils/firebase_instance.dart';
-import '../../domain/entities/user/login_user.dart';
-import 'firebase_login.dart';
+import 'package:mapping/features/login/data/datasource/firebase_login.dart';
+import 'package:mapping/features/login/domain/entities/user/login_user.dart';
+import 'package:mapping/utils/firebase_instance.dart';
 
 @injectable
 class FirebaseLoginImpl extends FirebaseLogin {

@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
-import '../../../config/app_router.dart';
-import '../../../core/app_colors.dart';
-import '../../../core/asset_paths.dart';
-import '../../../utils/firebase_instance.dart';
+import 'package:mapping/config/app_router.dart';
+import 'package:mapping/core/app_colors.dart';
+import 'package:mapping/core/asset_paths.dart';
+import 'package:mapping/utils/firebase_instance.dart';
 
 @RoutePage()
 class ViewNavigator extends StatelessWidget {

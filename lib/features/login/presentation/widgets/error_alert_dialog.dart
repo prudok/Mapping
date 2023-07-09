@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../generated/l10n.dart';
-import '../../data/datasource/firebase_login.dart';
+import 'package:mapping/features/login/data/datasource/firebase_login.dart';
+import 'package:mapping/generated/l10n.dart';
 
 class ErrorAlertDialog extends StatelessWidget {
-  final LoginFailure error;
+  const ErrorAlertDialog({required this.error, super.key});
 
-  const ErrorAlertDialog({super.key, required this.error});
+  final LoginFailure error;
 
   @override
   Widget build(BuildContext context) {

@@ -1,17 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import '../features/register/domain/entities/user_registration_info.dart';
-import 'firebase_instance.dart';
+import 'package:mapping/features/register/domain/entities/user_registration_info.dart';
+import 'package:mapping/utils/firebase_instance.dart';
 
 extension FirestoreExt on FirebaseFirestore {
-  Future addUserDetails(UserRegInfo user) async {
+  Future<void> addUserDetails(UserRegInfo user) async {
     await fbFireStore.collection('users').add(user.toJson());
   }
 
   Future<UserRegInfo> getUserDetails(String email) async {
     final snapshot = await fbFireStore
         .collection('users')
-        .where("email", isEqualTo: email)
+        .where('email', isEqualTo: email)
         .get();
     final userData =
         snapshot.docs.map((doc) => UserRegInfo.fromJson(doc.data())).single;

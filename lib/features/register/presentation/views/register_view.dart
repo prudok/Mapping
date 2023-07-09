@@ -1,18 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../config/app_router.dart';
-import '../../../../core/app_colors.dart';
-import '../../../../core/app_styles.dart';
-import '../../../../generated/l10n.dart';
-import '../../../../utils/login_validator.dart';
-import '../../../login/data/datasource/firebase_login.dart';
-import '../../../login/presentation/widgets/error_alert_dialog.dart';
-import '../../../login/presentation/widgets/login_text_field.dart';
-import '../../domain/entities/user_registration_info.dart';
-import '../bloc/register_bloc.dart';
-import '../widgets/login_option.dart';
+import 'package:mapping/config/app_router.dart';
+import 'package:mapping/core/app_colors.dart';
+import 'package:mapping/core/app_styles.dart';
+import 'package:mapping/features/login/data/datasource/firebase_login.dart';
+import 'package:mapping/features/login/presentation/widgets/error_alert_dialog.dart';
+import 'package:mapping/features/login/presentation/widgets/login_text_field.dart';
+import 'package:mapping/features/register/domain/entities/user_registration_info.dart';
+import 'package:mapping/features/register/presentation/bloc/register_bloc.dart';
+import 'package:mapping/features/register/presentation/widgets/login_option.dart';
+import 'package:mapping/generated/l10n.dart';
+import 'package:mapping/utils/login_validator.dart';
 
 @RoutePage()
 class RegisterView extends StatefulWidget {
@@ -146,9 +145,14 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                     listener: (context, state) {
                       state.maybeWhen(
-                        registerFailed: (failure) => const ErrorAlertDialog(
-                          error: LoginFailure.invalidCredentials,
-                        ),
+                        registerFailed: (failure) {
+                          showDialog(
+                            builder: (_) => const ErrorAlertDialog(
+                              error: LoginFailure.invalidCredentials,
+                            ),
+                            context: context,
+                          );
+                        },
                         registered: (userRegInfo) {
                           context.router.navigate(HomeRoute(
                             userEmail: userRegInfo.email,

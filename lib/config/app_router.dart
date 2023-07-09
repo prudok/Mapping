@@ -1,23 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mapping/features/home/presentation/views/home_view.dart';
+import 'package:mapping/features/login/presentation/views/login_view.dart';
+import 'package:mapping/features/profile/presentation/profile_view.dart';
+import 'package:mapping/features/register/presentation/views/register_view.dart';
+import 'package:mapping/features/settings/presentation/settings_view.dart';
+import 'package:mapping/features/view_navigator/presentation/view_navigator.dart';
 import 'package:mapping/utils/firebase_instance.dart';
-
-import '../features/home/presentation/views/home_view.dart';
-import '../features/login/presentation/views/login_view.dart';
-import '../features/profile/presentation/profile_view.dart';
-import '../features/register/presentation/views/register_view.dart';
-import '../features/settings/presentation/settings_view.dart';
-import '../features/view_navigator/presentation/view_navigator.dart';
 
 part 'app_router.gr.dart';
 
 @singleton
 @AutoRouterConfig(replaceInRouteName: 'View,Route')
 class AppRouter extends _$AppRouter {
-  final UserSignInChecker userSignInChecker;
-
   AppRouter(this.userSignInChecker);
+
+  final UserSignInChecker userSignInChecker;
 
   @override
   List<AutoRoute> get routes => [
@@ -55,11 +54,14 @@ class AppRouter extends _$AppRouter {
 @injectable
 class UserSignInChecker extends AutoRouteGuard {
   @override
-  void onNavigation(resolver, router) async {
+  Future<void> onNavigation(
+    NavigationResolver resolver,
+    StackRouter router,
+  ) async {
     if (fbAuth.currentUser != null) {
-      resolver.next(true);
+      resolver.next();
     } else {
-      router.replaceNamed('/${LoginRoute.name}');
+      await router.replaceNamed('/${LoginRoute.name}');
     }
   }
 }

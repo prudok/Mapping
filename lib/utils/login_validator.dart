@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
-import '../generated/l10n.dart';
+import 'package:mapping/generated/l10n.dart';
 
 class FormValidator {
   static String? emailValidator(BuildContext context, String? value) {

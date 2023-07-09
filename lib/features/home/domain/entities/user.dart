@@ -12,7 +12,6 @@ class User with _$User {
     required String name,
     required String surName,
     @Default(0) int goalOfTheWeek,
-    // TODO: implement a map entity to store inside the list
     @Default([]) List<String> routes,
   }) = _User;
 
