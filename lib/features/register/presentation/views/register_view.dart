@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapping/config/app_router.dart';
 import 'package:mapping/core/app_colors.dart';
 import 'package:mapping/core/app_styles.dart';
+import 'package:mapping/core/asset_paths.dart';
 import 'package:mapping/features/login/data/datasource/firebase_login.dart';
 import 'package:mapping/features/login/presentation/widgets/error_alert_dialog.dart';
 import 'package:mapping/features/login/presentation/widgets/login_text_field.dart';
@@ -52,8 +53,21 @@ class _RegisterViewState extends State<RegisterView> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.25),
-                  const Icon(Icons.map, size: 80, color: AppColors.purple),
+                  const SizedBox(height: 40),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(AssetPaths.welcomeImage),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Fill The Form',
+                    style: TextStyle(
+                      color: AppColors.orange,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   Form(
                     key: _registerKey,
                     child: Column(
@@ -99,9 +113,7 @@ class _RegisterViewState extends State<RegisterView> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.05,
-                  ),
+                  const SizedBox(height: 20),
                   ConstrainedBox(
                     constraints: const BoxConstraints(
                       maxHeight: 50,
@@ -124,7 +136,7 @@ class _RegisterViewState extends State<RegisterView> {
                             );
                           }
                         },
-                        style: AppStyles.widePurpleButtonStyle,
+                        style: AppStyles.wideButtonStyle,
                         child: Text(S.of(context).register),
                       ),
                     ),
@@ -134,7 +146,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                   const LoginOption(),
                   SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.05,
+                    height: MediaQuery.sizeOf(context).height * 0.01,
                   ),
                   BlocConsumer<RegisterBloc, RegisterState>(
                     builder: (context, state) {
@@ -145,18 +157,18 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                     listener: (context, state) {
                       state.maybeWhen(
-                        registerFailed: (failure) {
-                          showDialog(
+                        registerFailed: (failure) => showDialog(
                             builder: (_) => const ErrorAlertDialog(
                               error: LoginFailure.invalidCredentials,
                             ),
                             context: context,
-                          );
-                        },
+                          ),
                         registered: (userRegInfo) {
-                          context.router.navigate(HomeRoute(
-                            userEmail: userRegInfo.email,
-                          ));
+                          context.router.navigate(
+                            HomeRoute(
+                              userEmail: userRegInfo.email,
+                            ),
+                          );
                         },
                         orElse: () {},
                       );

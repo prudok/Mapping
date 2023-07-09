@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mapping/core/app_colors.dart';
-import 'package:mapping/features/login/presentation/widgets/login_form_field.dart';
 
 class LoginTextField extends StatelessWidget {
   const LoginTextField({
@@ -25,16 +24,27 @@ class LoginTextField extends StatelessWidget {
         minWidth: 100,
         maxWidth: 400,
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: AppColors.white,
-        ),
-        child: LoginFormField(
-          controller: controller,
-          validator: validator,
-          hintText: hintText ?? '',
-          isObscureText: isObscureText,
+      child: TextFormField(
+        obscureText: isObscureText ?? false,
+        validator: validator,
+        controller: controller,
+        decoration: InputDecoration(
+          fillColor: AppColors.white,
+          filled: true,
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.white),
+          ),
+          isDense: true,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 10,
+            vertical: 10,
+          ),
+          hintText: hintText,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
+          ),
         ),
       ),
     );

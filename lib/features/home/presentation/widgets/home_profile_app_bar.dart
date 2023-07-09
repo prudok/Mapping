@@ -9,7 +9,7 @@ class HomeProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.purple,
+      backgroundColor: AppColors.orange,
       elevation: 0,
       leading: IconButton(
         icon: const Icon(Icons.access_time),

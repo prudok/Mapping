@@ -22,7 +22,7 @@ class ProfileView extends StatelessWidget {
           ),
         ],
         elevation: 0,
-        backgroundColor: AppColors.purple,
+        backgroundColor: AppColors.orange,
       ),
       body: SingleChildScrollView(
         child: SizedBox(
@@ -211,7 +211,7 @@ class ProfilePreview extends StatelessWidget {
       children: [
         Container(
           decoration: AppStyles.roundedOnlyBottomEdges.copyWith(
-            color: AppColors.purple,
+            color: AppColors.orange,
           ),
         ),
         Center(

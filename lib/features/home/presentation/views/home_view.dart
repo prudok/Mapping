@@ -73,7 +73,7 @@ class HomeSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: AppColors.purple,
+      backgroundColor: AppColors.orange,
       elevation: 0,
       leading: IconButton(
         icon: const Icon(Icons.add_chart),
@@ -118,7 +118,7 @@ class HomeListView extends StatelessWidget {
               height: MediaQuery.sizeOf(context).height * 0.2,
               width: MediaQuery.sizeOf(context).width,
               decoration: const BoxDecoration(
-                color: AppColors.purple,
+                color: AppColors.orange,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20),

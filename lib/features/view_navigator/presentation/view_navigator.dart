@@ -32,7 +32,7 @@ class ViewNavigator extends StatelessWidget {
                   icon: Image.asset(AssetPaths.menuIcon),
                   activeIcon: Image.asset(
                     AssetPaths.menuIcon,
-                    color: AppColors.purple,
+                    color: AppColors.orange,
                   ),
                   label: '',
                 ),
@@ -40,7 +40,7 @@ class ViewNavigator extends StatelessWidget {
                   icon: Image.asset(AssetPaths.achievementsIcon),
                   activeIcon: Image.asset(
                     AssetPaths.achievementsIcon,
-                    color: AppColors.purple,
+                    color: AppColors.orange,
                   ),
                   label: '',
                 ),
@@ -48,7 +48,7 @@ class ViewNavigator extends StatelessWidget {
                   icon: Image.asset(AssetPaths.chatIcon),
                   activeIcon: Image.asset(
                     AssetPaths.chatIcon,
-                    color: AppColors.purple,
+                    color: AppColors.orange,
                   ),
                   label: '',
                 ),
@@ -56,14 +56,14 @@ class ViewNavigator extends StatelessWidget {
                   icon: Image.asset(AssetPaths.profileIcon),
                   activeIcon: Image.asset(
                     AssetPaths.profileIcon,
-                    color: AppColors.purple,
+                    color: AppColors.orange,
                   ),
                   label: '',
                 ),
               ],
               backgroundColor: const Color(0x00ffffff),
               unselectedItemColor: AppColors.lightGrey,
-              selectedItemColor: AppColors.purple,
+              selectedItemColor: AppColors.orange,
               showSelectedLabels: false,
               showUnselectedLabels: false,
             ),

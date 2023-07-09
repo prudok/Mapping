@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapping/config/app_router.dart';
 import 'package:mapping/core/app_colors.dart';
 import 'package:mapping/core/app_styles.dart';
+import 'package:mapping/core/asset_paths.dart';
 import 'package:mapping/features/login/domain/entities/user/login_user.dart';
 import 'package:mapping/features/login/presentation/bloc/login_bloc.dart';
 import 'package:mapping/features/login/presentation/widgets/error_alert_dialog.dart';
@@ -47,8 +48,18 @@ class _LoginViewState extends State<LoginView> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.35),
-                  const Icon(Icons.map, size: 80, color: AppColors.purple),
+                  const SizedBox(height: 40),
+                  Image.asset(AssetPaths.welcomeImage),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Enter Your Email And Password',
+                    style: TextStyle(
+                      color: AppColors.orange,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   Form(
                     key: _signInKey,
                     child: Column(
@@ -74,9 +85,7 @@ class _LoginViewState extends State<LoginView> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.05,
-                  ),
+                  const SizedBox(height: 20),
                   ConstrainedBox(
                     constraints: const BoxConstraints(
                       maxHeight: 50,
@@ -85,7 +94,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     child: SizedBox.expand(
                       child: ElevatedButton(
-                        style: AppStyles.widePurpleButtonStyle,
+                        style: AppStyles.wideButtonStyle,
                         onPressed: () {
                           if (_signInKey.currentState!.validate()) {
                             loginBloc.add(
@@ -122,12 +131,12 @@ class _LoginViewState extends State<LoginView> {
                       listener: (context, state) {
                         state.maybeWhen(
                           loadFailed: (failure) {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return ErrorAlertDialog(error: failure);
-                                },
-                              );
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return ErrorAlertDialog(error: failure);
+                              },
+                            );
                           },
                           logIn: (loginUserData) {
                             context.router.navigate(
