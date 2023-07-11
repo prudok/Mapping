@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Введите корректный пароль."),
         "enterCorrectSurname":
             MessageLookupByLibrary.simpleMessage("Введите корректную фамилию."),
+        "fillTheForm": MessageLookupByLibrary.simpleMessage("Заполните форму"),
         "goalOfTheWeek": MessageLookupByLibrary.simpleMessage("Цель недели"),
         "history": MessageLookupByLibrary.simpleMessage("История"),
         "incorrectPasswordOrLogin": MessageLookupByLibrary.simpleMessage(
@@ -47,7 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseTryAgain": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, попробуйте снова."),
         "register": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
-        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти"),
         "surname": MessageLookupByLibrary.simpleMessage("Фамилия"),
         "undefinedErrorWasOccurred":

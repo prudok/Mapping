@@ -23,8 +23,7 @@ mixin _$User {
   String get email => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get surName => throw _privateConstructorUsedError;
-  int get goalOfTheWeek =>
-      throw _privateConstructorUsedError; // TODO: implement a map entity to store inside the list
+  int get goalOfTheWeek => throw _privateConstructorUsedError;
   List<String> get routes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -164,7 +163,6 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   @JsonKey()
   final int goalOfTheWeek;
-// TODO: implement a map entity to store inside the list
   @override
   @JsonKey()
   final List<String> routes;
@@ -236,7 +234,7 @@ abstract class _User implements User {
   String get surName;
   @override
   int get goalOfTheWeek;
-  @override // TODO: implement a map entity to store inside the list
+  @override
   List<String> get routes;
   @override
   @JsonKey(ignore: true)

@@ -259,6 +259,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Fill The Form`
+  String get fillTheForm {
+    return Intl.message(
+      'Fill The Form',
+      name: 'fillTheForm',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

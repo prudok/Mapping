@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter correct password."),
         "enterCorrectSurname":
             MessageLookupByLibrary.simpleMessage("Enter correct surname."),
+        "fillTheForm": MessageLookupByLibrary.simpleMessage("Fill The Form"),
         "goalOfTheWeek":
             MessageLookupByLibrary.simpleMessage("Goal of the week"),
         "history": MessageLookupByLibrary.simpleMessage("History"),

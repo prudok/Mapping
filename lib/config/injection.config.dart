@@ -11,20 +11,24 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-
-import '../features/home/presentation/bloc/home_bloc.dart' as _i5;
-import '../features/login/data/datasource/firebase_login_impl.dart' as _i3;
-import '../features/login/data/repository/login_repository_impl.dart' as _i6;
-import '../features/login/domain/usecases/user_sign_in_impl.dart' as _i10;
-import '../features/login/presentation/bloc/login_bloc.dart' as _i11;
-import '../features/register/data/datasource/firebase_register_impl.dart'
+import 'package:mapping/config/app_router.dart' as _i9;
+import 'package:mapping/features/home/presentation/bloc/home_bloc.dart' as _i5;
+import 'package:mapping/features/login/data/datasource/firebase_login_impl.dart'
+    as _i3;
+import 'package:mapping/features/login/data/repository/login_repository_impl.dart'
+    as _i6;
+import 'package:mapping/features/login/domain/usecases/user_sign_in_impl.dart'
+    as _i10;
+import 'package:mapping/features/login/presentation/bloc/login_bloc.dart'
+    as _i11;
+import 'package:mapping/features/register/data/datasource/firebase_register_impl.dart'
     as _i4;
-import '../features/register/data/repository/register_repository_impl.dart'
+import 'package:mapping/features/register/data/repository/register_repository_impl.dart'
     as _i7;
-import '../features/register/domain/usecases/user_registration_impl.dart'
+import 'package:mapping/features/register/domain/usecases/user_registration_impl.dart'
     as _i8;
-import '../features/register/presentation/bloc/register_bloc.dart' as _i12;
-import 'app_router.dart' as _i9;
+import 'package:mapping/features/register/presentation/bloc/register_bloc.dart'
+    as _i12;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt

@@ -38,121 +38,146 @@ class _LoginViewState extends State<LoginView> {
     final loginBloc = BlocProvider.of<LoginBloc>(context);
 
     return Scaffold(
-      body: ListView(
-        children: [
-          Container(
-            decoration: AppStyles.roundedOnlyBottomEdges.copyWith(
-              color: AppColors.lightGrey,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  const SizedBox(height: 40),
-                  Image.asset(AssetPaths.welcomeImage),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'Enter Your Email And Password',
-                    style: TextStyle(
-                      color: AppColors.orange,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Form(
-                    key: _signInKey,
-                    child: Column(
-                      children: [
-                        LoginTextField(
-                          controller: _emailController,
-                          validator: (value) =>
-                              FormValidator.emailValidator(context, value),
-                          isEmailTextFormField: true,
-                          hintText: S.of(context).email,
-                        ),
-                        SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.02,
-                        ),
-                        LoginTextField(
-                          controller: _passwordController,
-                          validator: (value) =>
-                              FormValidator.passwordValidator(context, value),
-                          isEmailTextFormField: false,
-                          hintText: S.of(context).password,
-                          isObscureText: true,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      maxHeight: 50,
-                      minWidth: 100,
-                      maxWidth: 400,
-                    ),
-                    child: SizedBox.expand(
-                      child: ElevatedButton(
-                        style: AppStyles.wideButtonStyle,
-                        onPressed: () {
-                          if (_signInKey.currentState!.validate()) {
-                            loginBloc.add(
-                              LoginEvent.signIn(
-                                LoginUser(
-                                  email: _emailController.text.trim(),
-                                  password: _passwordController.text.trim(),
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                        child: Text(S.of(context).logIn),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            Container(
+              decoration: AppStyles.roundedOnlyBottomEdges.copyWith(
+                color: AppColors.lightGrey,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 40),
+                    Image.asset(AssetPaths.welcomeImage),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Enter Your Email And Password',
+                      style: TextStyle(
+                        color: AppColors.orange,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.02,
-                  ),
-                  const RegisterOption(),
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.05,
-                    child: BlocConsumer<LoginBloc, LoginState>(
-                      builder: (context, state) {
-                        return state.maybeWhen(
-                          loading: () {
-                            return const CircularProgressIndicator();
-                          },
-                          orElse: () {
-                            return const SizedBox();
-                          },
-                        );
-                      },
-                      listener: (context, state) {
-                        state.maybeWhen(
-                          loadFailed: (failure) {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return ErrorAlertDialog(errorMessage: failure);
-                              },
-                            );
-                          },
-                          logIn: (loginUserData) {
-                            context.router.navigate(
-                              HomeRoute(userEmail: loginUserData.email),
-                            );
-                          },
-                          orElse: () {},
-                        );
-                      },
+                    const SizedBox(height: 20),
+                    Form(
+                      key: _signInKey,
+                      child: Column(
+                        children: [
+                          LoginTextField(
+                            controller: _emailController,
+                            validator: (value) => FormValidator.emailValidator(
+                              context,
+                              value,
+                            ),
+                            isEmailTextFormField: true,
+                            hintText: S.of(context).email,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 0.02,
+                          ),
+                          LoginTextField(
+                            controller: _passwordController,
+                            validator: (value) =>
+                                FormValidator.passwordValidator(
+                              context,
+                              value,
+                            ),
+                            isEmailTextFormField: false,
+                            hintText: S.of(context).password,
+                            isObscureText: true,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxHeight: 50,
+                        minWidth: 100,
+                        maxWidth: 400,
+                      ),
+                      child: SizedBox.expand(
+                        child: ElevatedButton(
+                          style: AppStyles.wideButtonStyle,
+                          onPressed: () {
+                            if (_signInKey.currentState!.validate()) {
+                              loginBloc.add(
+                                LoginEvent.signIn(
+                                  LoginUser(
+                                    email: _emailController.text.trim(),
+                                    password: _passwordController.text.trim(),
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          child: Text(
+                            S.of(context).logIn,
+                            style: const TextStyle(color: AppColors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height * 0.02,
+                    ),
+                    const RegisterOption(),
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height * 0.05,
+                      child: BlocConsumer<LoginBloc, LoginState>(
+                        builder: (context, state) {
+                          return state.maybeWhen(
+                            loading: () {
+                              return Center(
+                                child: SizedBox(
+                                  width: 100,
+                                  height: 10,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: const LinearProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation(
+                                        AppColors.orange,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            orElse: () {
+                              return const SizedBox();
+                            },
+                          );
+                        },
+                        listener: (context, state) {
+                          state.maybeWhen(
+                            loadFailed: (failure) {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return ErrorAlertDialog(
+                                      errorMessage: failure);
+                                },
+                              );
+                            },
+                            logIn: (loginUserData) {
+                              context.router.navigate(
+                                HomeRoute(userEmail: loginUserData.email),
+                              );
+                            },
+                            orElse: () {},
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

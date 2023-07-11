@@ -27,35 +27,15 @@ class ProfileView extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.sizeOf(context).height,
+          height: MediaQuery.sizeOf(context).height * 0.75,
           width: double.infinity,
-          child: const Flex(
-            direction: Axis.vertical,
+          child: const Column(
             children: [
-              Flexible(
-                flex: 40,
-                child: ProfilePreview(),
-              ),
-              Flexible(
-                flex: 10,
-                child: SizedBox(height: 20),
-              ),
-              Flexible(
-                flex: 25,
-                child: AchievePreview(),
-              ),
-              Flexible(
-                flex: 10,
-                child: SizedBox(height: 20),
-              ),
-              Flexible(
-                flex: 55,
-                child: Options(),
-              ),
-              Flexible(
-                flex: 10,
-                child: SizedBox(height: 40),
-              ),
+              ProfilePreview(),
+              SizedBox(height: 10),
+              AchievePreview(),
+              SizedBox(height: 10),
+              Expanded(child: Options()),
             ],
           ),
         ),
@@ -82,45 +62,42 @@ class Options extends StatelessWidget {
           horizontal: 10,
           vertical: 5,
         ),
-        child: ListView(
-          padding: EdgeInsets.zero,
+        child: Flex(
+          direction: Axis.vertical,
           children: [
-            ListTile(
-              leading: Image.asset(
-                AssetPaths.settingsIcon,
-                color: AppColors.black,
-              ),
-              title: Text(S.of(context).settings),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios),
-              ),
-            ),
-            const Divider(height: 20, indent: 80, endIndent: 80),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios),
+            Expanded(
+              child: ListTile(
+                leading: Image.asset(
+                  AssetPaths.settingsIcon,
+                  color: AppColors.black,
+                ),
+                title: Text(S.of(context).settings),
+                trailing: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.arrow_forward_ios),
+                ),
               ),
             ),
             const Divider(height: 20, indent: 80, endIndent: 80),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios),
+            Expanded(
+              child: ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
+                trailing: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.arrow_forward_ios),
+                ),
               ),
             ),
             const Divider(height: 20, indent: 80, endIndent: 80),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios),
+            Expanded(
+              child: ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
+                trailing: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.arrow_forward_ios),
+                ),
               ),
             ),
           ],
@@ -138,6 +115,7 @@ class AchievePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 100,
       margin: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -216,6 +194,7 @@ class ProfilePreview extends StatelessWidget {
     return Stack(
       children: [
         Container(
+          height: 180,
           decoration: AppStyles.roundedOnlyBottomEdges.copyWith(
             color: AppColors.orange,
           ),

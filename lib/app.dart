@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mapping/config/app_router.dart';
 import 'package:mapping/config/injection.dart';
+import 'package:mapping/config/themes.dart';
 import 'package:mapping/features/home/presentation/bloc/home_bloc.dart';
 import 'package:mapping/features/login/presentation/bloc/login_bloc.dart';
 import 'package:mapping/features/register/presentation/bloc/register_bloc.dart';
@@ -26,6 +27,7 @@ class Mapping extends StatelessWidget {
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
+        theme: lightTheme,
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
