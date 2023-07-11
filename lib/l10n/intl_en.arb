@@ -18,5 +18,6 @@
   "enterCorrectEmail": "Enter correct email.",
   "enterCorrectPassword": "Enter correct password.",
   "enterCorrectName": "Enter correct name.",
-  "enterCorrectSurname": "Enter correct surname."
+  "enterCorrectSurname": "Enter correct surname.",
+  "settings": "Settings"
 }

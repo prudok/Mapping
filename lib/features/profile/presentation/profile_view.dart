@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mapping/core/app_colors.dart';
 import 'package:mapping/core/app_styles.dart';
 import 'package:mapping/core/asset_paths.dart';
+import 'package:mapping/generated/l10n.dart';
 
 @RoutePage()
 class ProfileView extends StatelessWidget {
@@ -27,25 +28,33 @@ class ProfileView extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.sizeOf(context).height,
-          width: MediaQuery.sizeOf(context).width,
+          width: double.infinity,
           child: const Flex(
             direction: Axis.vertical,
             children: [
               Flexible(
-                flex: 2,
+                flex: 40,
                 child: ProfilePreview(),
               ),
-              SizedBox(height: 15),
               Flexible(
+                flex: 10,
+                child: SizedBox(height: 20),
+              ),
+              Flexible(
+                flex: 25,
                 child: AchievePreview(),
               ),
-              SizedBox(height: 20),
               Flexible(
-                flex: 3,
+                flex: 10,
+                child: SizedBox(height: 20),
+              ),
+              Flexible(
+                flex: 55,
                 child: Options(),
               ),
               Flexible(
-                child: SizedBox(height: 20),
+                flex: 10,
+                child: SizedBox(height: 40),
               ),
             ],
           ),
@@ -63,8 +72,7 @@ class Options extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: MediaQuery.sizeOf(context).height * 0.35,
-      width: MediaQuery.sizeOf(context).width - 20,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: AppColors.white,
@@ -75,14 +83,14 @@ class Options extends StatelessWidget {
           vertical: 5,
         ),
         child: ListView(
-          physics: const NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.zero,
           children: [
             ListTile(
               leading: Image.asset(
                 AssetPaths.settingsIcon,
                 color: AppColors.black,
               ),
-              title: const Text('Settings'),
+              title: Text(S.of(context).settings),
               trailing: IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.arrow_forward_ios),
@@ -129,72 +137,70 @@ class AchievePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: AppColors.white,
-        ),
-        child: Column(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios),
-              ),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: AppColors.white,
+      ),
+      child: Column(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            trailing: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.arrow_forward_ios),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(Icons.timer),
-                      SizedBox(width: 10),
-                      Column(
-                        children: [
-                          Text('103,2'),
-                          Text('km'),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(Icons.timer),
-                      SizedBox(width: 10),
-                      Column(
-                        children: [
-                          Text('103,2'),
-                          Text('km'),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(Icons.timer),
-                      SizedBox(width: 10),
-                      Column(
-                        children: [
-                          Text('103,2'),
-                          Text('km'),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.timer),
+                    SizedBox(width: 10),
+                    Column(
+                      children: [
+                        Text('103,2'),
+                        Text('km'),
+                      ],
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.timer),
+                    SizedBox(width: 10),
+                    Column(
+                      children: [
+                        Text('103,2'),
+                        Text('km'),
+                      ],
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.timer),
+                    SizedBox(width: 10),
+                    Column(
+                      children: [
+                        Text('103,2'),
+                        Text('km'),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseTryAgain": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, попробуйте снова."),
         "register": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти"),
         "surname": MessageLookupByLibrary.simpleMessage("Фамилия"),
         "undefinedErrorWasOccurred":

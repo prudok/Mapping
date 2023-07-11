@@ -6,7 +6,7 @@ class LoginState with _$LoginState {
 
   const factory LoginState.loading() = _Loading;
 
-  const factory LoginState.loadFailed(LoginFailure loginFailure) = _LoadFailed;
+  const factory LoginState.loadFailed(String errorMessage) = _LoadFailed;
 
   const factory LoginState.logIn({required User user}) = _LogIn;
 

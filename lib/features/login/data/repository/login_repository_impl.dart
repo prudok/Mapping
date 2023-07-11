@@ -1,7 +1,5 @@
-import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-import 'package:mapping/features/login/data/datasource/firebase_login.dart';
 import 'package:mapping/features/login/data/datasource/firebase_login_impl.dart';
 import 'package:mapping/features/login/domain/entities/user/login_user.dart';
 import 'package:mapping/features/login/domain/repository/login_repository.dart';
@@ -13,7 +11,7 @@ class LoginRepositoryImpl extends LoginRepository {
   final FirebaseLoginImpl firebaseLoginImpl;
 
   @override
-  Future<Either<LoginFailure, User>> signInUser(LoginUser user) {
+  Future<User> signInUser(LoginUser user) {
     return firebaseLoginImpl.loadUser(user);
   }
 }

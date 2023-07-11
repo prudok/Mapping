@@ -134,7 +134,7 @@ class _LoginViewState extends State<LoginView> {
                             showDialog(
                               context: context,
                               builder: (context) {
-                                return ErrorAlertDialog(error: failure);
+                                return ErrorAlertDialog(errorMessage: failure);
                               },
                             );
                           },

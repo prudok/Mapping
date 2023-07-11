@@ -1,22 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:mapping/features/login/data/datasource/firebase_login.dart';
 import 'package:mapping/generated/l10n.dart';
 
 class ErrorAlertDialog extends StatelessWidget {
-  const ErrorAlertDialog({required this.error, super.key});
+  const ErrorAlertDialog({required this.errorMessage, super.key});
 
-  final LoginFailure error;
+  final String errorMessage;
 
   @override
   Widget build(BuildContext context) {
-    final isUndefinedError = error.index == 0;
     return AlertDialog(
-      title: Text(
-        isUndefinedError
-            ? S.of(context).undefinedErrorWasOccurred
-            : S.of(context).incorrectPasswordOrLogin,
-      ),
+      title: Text(errorMessage),
       content: Text(
         S.of(context).pleaseTryAgain,
       ),

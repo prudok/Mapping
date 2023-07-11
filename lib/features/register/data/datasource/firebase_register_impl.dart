@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuthException;
 import 'package:injectable/injectable.dart';
 import 'package:mapping/features/register/data/datasource/firebase_register.dart';
@@ -8,7 +7,7 @@ import 'package:mapping/utils/firebase_instance.dart';
 @injectable
 class FirebaseRegisterImpl extends FirebaseRegister {
   @override
-  Future<Either<RegisterFailure, UserRegInfo>> loadUser(
+  Future<UserRegInfo> loadUser(
     UserRegInfo user,
   ) async {
     try {
@@ -16,13 +15,18 @@ class FirebaseRegisterImpl extends FirebaseRegister {
         email: user.email,
         password: user.password,
       );
-      if (userCredential.user != null) {
-        return Right(user);
+      if (userCredential.user == null) {
+        throw FirebaseAuthException(
+          code: '404',
+          message: "There's no such user.",
+        );
       } else {
-        return const Left(RegisterFailure.invalidCredentials);
+        return user;
       }
-    } on FirebaseAuthException catch (_) {
-      return const Left(RegisterFailure.error);
+    } on FirebaseAuthException catch (err, stackTrace) {
+      Error.throwWithStackTrace(err, stackTrace);
+    } on Object catch (err, stackTrace) {
+      throw Error.throwWithStackTrace(err, stackTrace);
     }
   }
 }

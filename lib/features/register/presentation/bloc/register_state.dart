@@ -11,6 +11,6 @@ class RegisterState with _$RegisterState {
   }) = _Registered;
 
   const factory RegisterState.registerFailed({
-    required RegisterFailure failure,
+    required String failureMessage,
   }) = _RegisterFailed;
 }

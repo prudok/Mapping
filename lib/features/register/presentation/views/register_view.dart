@@ -5,7 +5,6 @@ import 'package:mapping/config/app_router.dart';
 import 'package:mapping/core/app_colors.dart';
 import 'package:mapping/core/app_styles.dart';
 import 'package:mapping/core/asset_paths.dart';
-import 'package:mapping/features/login/data/datasource/firebase_login.dart';
 import 'package:mapping/features/login/presentation/widgets/error_alert_dialog.dart';
 import 'package:mapping/features/login/presentation/widgets/login_text_field.dart';
 import 'package:mapping/features/register/domain/entities/user_registration_info.dart';
@@ -157,12 +156,12 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                     listener: (context, state) {
                       state.maybeWhen(
-                        registerFailed: (failure) => showDialog(
-                            builder: (_) => const ErrorAlertDialog(
-                              error: LoginFailure.invalidCredentials,
-                            ),
-                            context: context,
+                        registerFailed: (failureMessage) => showDialog(
+                          builder: (_) => ErrorAlertDialog(
+                            errorMessage: failureMessage,
                           ),
+                          context: context,
+                        ),
                         registered: (userRegInfo) {
                           context.router.navigate(
                             HomeRoute(

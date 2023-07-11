@@ -18,5 +18,6 @@
   "enterCorrectEmail": "Введите корректую почту.",
   "enterCorrectPassword": "Введите корректный пароль.",
   "enterCorrectName": "Введите корректное имя.",
-  "enterCorrectSurname": "Введите корректную фамилию."
+  "enterCorrectSurname": "Введите корректную фамилию.",
+  "settings": "Settings"
 }
