@@ -16,8 +16,8 @@ class ViewNavigator extends StatelessWidget {
       routes: [
         const ProfileRoute(),
         HomeRoute(userEmail: fbAuth.currentUser!.email),
+        const ChatRoute(),
         const SettingsRoute(),
-        const ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return Padding(
@@ -53,9 +53,12 @@ class ViewNavigator extends StatelessWidget {
                   label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: Image.asset(AssetPaths.profileIcon),
+                  icon: Image.asset(
+                    AssetPaths.settingsIcon,
+                    color: AppColors.grey,
+                  ),
                   activeIcon: Image.asset(
-                    AssetPaths.profileIcon,
+                    AssetPaths.settingsIcon,
                     color: AppColors.orange,
                   ),
                   label: '',

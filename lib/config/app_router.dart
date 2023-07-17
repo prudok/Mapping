@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mapping/features/chat/presentation/views/chat_view.dart';
 import 'package:mapping/features/home/presentation/views/home_view.dart';
 import 'package:mapping/features/login/presentation/views/login_view.dart';
 import 'package:mapping/features/profile/presentation/profile_view.dart';
@@ -40,6 +41,10 @@ class AppRouter extends _$AppRouter {
             AutoRoute(
               path: ProfileRoute.name,
               page: ProfileRoute.page,
+            ),
+            AutoRoute(
+              path: ChatRoute.name,
+              page: ChatRoute.page,
             ),
             AutoRoute(
               path: SettingsRoute.name,

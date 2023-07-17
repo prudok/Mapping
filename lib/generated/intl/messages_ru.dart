@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("Все"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Уже есть аккаунт?"),
+        "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "email": MessageLookupByLibrary.simpleMessage("Почта"),
         "enterCorrectEmail":
             MessageLookupByLibrary.simpleMessage("Введите корректую почту."),

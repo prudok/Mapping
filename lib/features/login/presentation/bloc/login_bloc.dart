@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:mapping/features/login/domain/entities/user/login_user.dart';
+import 'package:mapping/features/login/domain/entities/login_user.dart';
 import 'package:mapping/features/login/domain/usecases/user_sign_in_impl.dart';
 
 part 'login_bloc.freezed.dart';

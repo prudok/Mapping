@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "enterCorrectEmail":
             MessageLookupByLibrary.simpleMessage("Enter correct email."),

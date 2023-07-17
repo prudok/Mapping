@@ -82,9 +82,7 @@ class _RegisterViewState extends State<RegisterView> {
                             isEmailTextFormField: false,
                             hintText: S.of(context).name,
                           ),
-                          SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 0.02,
-                          ),
+                          const SizedBox(height: 20),
                           LoginTextField(
                             controller: _surnameController,
                             validator: (value) =>
@@ -95,9 +93,7 @@ class _RegisterViewState extends State<RegisterView> {
                             isEmailTextFormField: false,
                             hintText: S.of(context).surname,
                           ),
-                          SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 0.02,
-                          ),
+                          const SizedBox(height: 20),
                           LoginTextField(
                             controller: _emailController,
                             validator: (value) => FormValidator.emailValidator(
@@ -107,9 +103,7 @@ class _RegisterViewState extends State<RegisterView> {
                             isEmailTextFormField: true,
                             hintText: S.of(context).email,
                           ),
-                          SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 0.02,
-                          ),
+                          const SizedBox(height: 20),
                           LoginTextField(
                             controller: _passwordController,
                             validator: (value) =>

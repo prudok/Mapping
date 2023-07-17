@@ -41,11 +41,14 @@ class _HomeViewState extends State<HomeView> {
       appBar: const HomeAppBar(),
       extendBody: true,
       backgroundColor: AppColors.lightGrey,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.logout_outlined),
-        onPressed: () {
-          homeBloc.add(const HomeEvent.signOut());
-        },
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 70),
+        child: FloatingActionButton(
+          child: const Icon(Icons.logout_outlined),
+          onPressed: () {
+            homeBloc.add(const HomeEvent.signOut());
+          },
+        ),
       ),
       body: BlocBuilder<HomeBloc, HomeState>(
         bloc: homeBloc,
@@ -112,16 +115,16 @@ class HomeListView extends StatelessWidget {
     return SingleChildScrollView(
       padding: EdgeInsets.zero,
       child: SizedBox(
-        height: MediaQuery.sizeOf(context).height,
+        height: MediaQuery.sizeOf(context).height * 0.8,
         width: double.infinity,
         child: const Column(
           children: [
             GoalsPreview(),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             BestRouteRating(),
             SizedBox(height: 10),
             HistoryOptions(),
-            RoutesHistory(),
+            Expanded(child: RoutesHistory()),
           ],
         ),
       ),

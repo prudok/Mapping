@@ -27,15 +27,15 @@ class ProfileView extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.sizeOf(context).height * 0.75,
+          height: MediaQuery.sizeOf(context).height * 0.8,
           width: double.infinity,
           child: const Column(
             children: [
-              ProfilePreview(),
+              Expanded(flex: 3, child: ProfilePreview()),
               SizedBox(height: 10),
               AchievePreview(),
               SizedBox(height: 10),
-              Expanded(child: Options()),
+              Expanded(flex: 4, child: Options()),
             ],
           ),
         ),
@@ -66,40 +66,53 @@ class Options extends StatelessWidget {
           direction: Axis.vertical,
           children: [
             Expanded(
-              child: ListTile(
-                leading: Image.asset(
-                  AssetPaths.settingsIcon,
-                  color: AppColors.black,
-                ),
-                title: Text(S.of(context).settings),
-                trailing: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.arrow_forward_ios),
-                ),
-              ),
-            ),
-            const Divider(height: 20, indent: 80, endIndent: 80),
-            Expanded(
-              child: ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Settings'),
-                trailing: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.arrow_forward_ios),
+              child: Center(
+                child: ListTile(
+                  leading: Image.asset(
+                    AssetPaths.settingsIcon,
+                    color: AppColors.black,
+                  ),
+                  title: Text(S.of(context).settings),
+                  trailing: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.arrow_forward_ios),
+                  ),
                 ),
               ),
             ),
             const Divider(height: 20, indent: 80, endIndent: 80),
             Expanded(
-              child: ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Settings'),
-                trailing: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.arrow_forward_ios),
+              child: Center(
+                child: ListTile(
+                  leading: Image.asset(
+                    AssetPaths.settingsIcon,
+                    color: AppColors.black,
+                  ),
+                  title: Text(S.of(context).settings),
+                  trailing: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.arrow_forward_ios),
+                  ),
                 ),
               ),
             ),
+            const Divider(height: 20, indent: 80, endIndent: 80),
+            Expanded(
+              child: Center(
+                child: ListTile(
+                  leading: Image.asset(
+                    AssetPaths.settingsIcon,
+                    color: AppColors.black,
+                  ),
+                  title: Text(S.of(context).settings),
+                  trailing: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -194,26 +207,33 @@ class ProfilePreview extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: 180,
           decoration: AppStyles.roundedOnlyBottomEdges.copyWith(
             color: AppColors.orange,
           ),
         ),
         Center(
-          child: Column(
+          child: Flex(
+            direction: Axis.vertical,
             children: [
               const SizedBox(height: 15),
-              Container(
-                height: 90,
-                width: 90,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.white,
+              Expanded(
+                flex: 2,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    minHeight: 90,
+                    minWidth: 90,
+                  ),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.white,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
-              const Text('Andrew'),
-              const SizedBox(height: 10),
+              const Flexible(child: Text('Andrew')),
+              const Flexible(child: SizedBox(height: 10)),
               const Text('Beginner'),
             ],
           ),

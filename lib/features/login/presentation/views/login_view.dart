@@ -5,7 +5,7 @@ import 'package:mapping/config/app_router.dart';
 import 'package:mapping/core/app_colors.dart';
 import 'package:mapping/core/app_styles.dart';
 import 'package:mapping/core/asset_paths.dart';
-import 'package:mapping/features/login/domain/entities/user/login_user.dart';
+import 'package:mapping/features/login/domain/entities/login_user.dart';
 import 'package:mapping/features/login/presentation/bloc/login_bloc.dart';
 import 'package:mapping/features/login/presentation/widgets/error_alert_dialog.dart';
 import 'package:mapping/features/login/presentation/widgets/login_text_field.dart';
@@ -107,8 +107,8 @@ class _LoginViewState extends State<LoginView> {
                               loginBloc.add(
                                 LoginEvent.signIn(
                                   LoginUser(
-                                    email: _emailController.text.trim(),
-                                    password: _passwordController.text.trim(),
+                                    _emailController.text.trim(),
+                                    _passwordController.text.trim(),
                                   ),
                                 ),
                               );

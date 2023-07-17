@@ -3,7 +3,8 @@ import 'package:mapping/features/register/domain/entities/user_registration_info
 import 'package:mapping/utils/firebase_instance.dart';
 
 extension FirestoreExt on FirebaseFirestore {
-  Future<void> addUserDetails(UserRegInfo user) async {
+  // Working with user registration
+  Future<void> addUserRegDetails(UserRegInfo user) async {
     await fbFireStore.collection('users').add(user.toJson());
   }
 

@@ -20,5 +20,6 @@
   "enterCorrectName": "Введите корректное имя.",
   "enterCorrectSurname": "Введите корректную фамилию.",
   "settings": "Настройки",
-  "fillTheForm": "Заполните форму"
+  "fillTheForm": "Заполните форму",
+  "chat": "Chat"
 }

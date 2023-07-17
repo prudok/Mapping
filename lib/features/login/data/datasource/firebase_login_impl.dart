@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mapping/features/login/data/datasource/firebase_login.dart';
-import 'package:mapping/features/login/domain/entities/user/login_user.dart';
+import 'package:mapping/features/login/domain/entities/login_user.dart';
 import 'package:mapping/utils/firebase_instance.dart';
 
 @injectable

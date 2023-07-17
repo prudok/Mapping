@@ -20,5 +20,6 @@
   "enterCorrectName": "Enter correct name.",
   "enterCorrectSurname": "Enter correct surname.",
   "settings": "Settings",
-  "fillTheForm": "Fill The Form"
+  "fillTheForm": "Fill The Form",
+  "chat": "Chat"
 }
