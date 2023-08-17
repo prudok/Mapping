@@ -177,9 +177,9 @@ class _RegisterViewState extends State<RegisterView> {
                         },
                         listener: (context, state) {
                           state.maybeWhen(
-                            registerFailed: (failureMessage) => showDialog(
+                            registerFailed: (failureMsg) => showDialog<void>(
                               builder: (_) => ErrorAlertDialog(
-                                errorMessage: failureMessage,
+                                errorMessage: failureMsg,
                               ),
                               context: context,
                             ),

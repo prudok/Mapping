@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mapping/core/app_colors.dart';
 
-class AppStyles {
+abstract class AppStyles {
   static final ButtonStyle wideButtonStyle = ElevatedButton.styleFrom(
     padding: const EdgeInsets.symmetric(
       horizontal: 15,
