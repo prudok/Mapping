@@ -7,7 +7,7 @@ analyzer:
     - '**.config.dart'
     - '**.gr.dart'
     - '**.g.dart'
-    - 'lib/generated/*'
+    - 'lib/generated/**'
     - 'lib/firebase_options.dart'
     - 'pubspec.yaml'
 
