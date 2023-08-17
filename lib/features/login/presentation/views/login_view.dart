@@ -154,7 +154,7 @@ class _LoginViewState extends State<LoginView> {
                         listener: (context, state) {
                           state.maybeWhen(
                             loadFailed: (failure) {
-                              showDialog(
+                              showDialog<void>(
                                 context: context,
                                 builder: (context) {
                                   return ErrorAlertDialog(
