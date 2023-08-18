@@ -16,7 +16,7 @@ class ViewNavigator extends StatelessWidget {
       routes: [
         const ProfileRoute(),
         HomeRoute(userEmail: fbAuth.currentUser!.email),
-        const ChatRoute(),
+        const SettingsRoute(),
         const SettingsRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {

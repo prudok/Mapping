@@ -1,19 +1,19 @@
 import 'dart:async';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mapping/app.dart';
 import 'package:mapping/config/config.dart';
-import 'package:mapping/firebase_options.dart';
+import 'package:mapping/core/core.dart';
 
 void main() => runZonedGuarded<void>(
       () async {
-        WidgetsFlutterBinding.ensureInitialized();
-        await Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        );
-        await configureDependencies();
-        runApp(const Mapping());
+        try {
+          await $initializeApp();
+        } on Object catch (error, stackTrace) {
+          await getIt.get<ErrorHandler>().send(error, stackTrace);
+          runApp(const AppError());
+          return;
+        }
+        runApp(const App());
       },
       (Object error, StackTrace stackTrace) {
         getIt.get<ErrorHandler>().send(error, stackTrace);

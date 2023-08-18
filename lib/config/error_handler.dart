@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 /// to analytics
 @Singleton()
 class ErrorHandler {
-  Future<void> send(Object error, StackTrace stackTrace) async {
+  Future<void> send(Object error, StackTrace? stackTrace) async {
     Future<void>.delayed(const Duration(milliseconds: 200), () {
       return;
     });
