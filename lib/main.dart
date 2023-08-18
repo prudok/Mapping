@@ -2,9 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mapping/config/config.dart';
-import 'package:mapping/core/initialization/initialization.dart';
-import 'package:mapping/core/widget/app.dart';
-import 'package:mapping/core/widget/app_error.dart';
+import 'package:mapping/core/core.dart';
 
 void main() => runZonedGuarded<void>(
       () async {
