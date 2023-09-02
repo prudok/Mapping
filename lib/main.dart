@@ -15,7 +15,5 @@ void main() => runZonedGuarded<void>(
         }
         runApp(const App());
       },
-      (Object error, StackTrace stackTrace) {
-        getIt.get<ErrorHandler>().send(error, stackTrace);
-      },
+      (error, stackTrace) => getIt.get<ErrorHandler>().send(error, stackTrace),
     );
