@@ -7,7 +7,7 @@ import 'package:mapping/core/core.dart';
 void main() => runZonedGuarded<void>(
       () async {
         try {
-          await $initializeApp();
+          await initializeApp();
         } on Object catch (error, stackTrace) {
           await getIt.get<ErrorHandler>().send(error, stackTrace);
           runApp(const AppError());

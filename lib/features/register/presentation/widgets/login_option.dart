@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../config/app_router.dart';
-import '../../../../generated/l10n.dart';
+import 'package:mapping/config/app_router.dart';
+import 'package:mapping/generated/l10n.dart';
 
 class LoginOption extends StatelessWidget {
   const LoginOption({

@@ -5,11 +5,11 @@ import 'package:mapping/config/config.dart';
 import 'package:mapping/firebase_options.dart';
 
 /// detailed initialization function can be custom configurable
-Future<void>? _$initializeApp;
+Future<void>? _initializeApp;
 
 /// Initialization process running all dependencies. Rethrow errors if needed
-Future<void> $initializeApp() async {
-  _$initializeApp ??= Future<void>(() async {
+Future<void> initializeApp() async {
+  _initializeApp ??= Future<void>(() async {
     try {
       await configureDependencies();
       WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ Future<void> $initializeApp() async {
       rethrow;
     }
   });
-  await _$initializeApp!;
+  await _initializeApp!;
 }
 
 /// Defines all platform errors
